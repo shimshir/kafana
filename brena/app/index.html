@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="brena" ng-controller="homeController">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+	<script src="config.js"></script>
+	<script src="module.js"></script>
+	<script src="components/home/homeController.js"></script>
+</head>
+<body>
+<h2>Halid's developers:</h2>
+
+<table>
+	<tbody>
+	<tr>
+		<th>First Name</th><th>Last Name</th>
+	</tr>
+	<tr ng-repeat="developer in developers">
+		<td>{{ developer.firstName }}</td><td>{{ developer.lastName }}</td>
+	</tr>
+	</tbody>
+</table>
+
+</body>
+</html>

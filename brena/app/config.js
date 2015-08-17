@@ -1,0 +1,1 @@
+var apiEndpoint = "http://localhost:8080/halid/api/v1";
