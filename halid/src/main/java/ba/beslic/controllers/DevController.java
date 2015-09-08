@@ -20,6 +20,7 @@ public class DevController {
 	public List<Person> getDevelopers() {
 		Person admir = new Person("Admir", "Memic");
 		Person azer = new Person("Azer", "Aljovic");
-		return Arrays.asList(admir, azer);
+		Person mrX = new Person("Mr", "X");
+		return Arrays.asList(admir, azer, mrX);
 	}
 }
