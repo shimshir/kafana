@@ -1,5 +1,5 @@
-app.controller('homeController', ['$scope', 'Developer',
-	function ($scope, Developer) {
-		$scope.developers = Developer.query();
+app.controller('homeController', ['$scope',
+	function ($scope) {
+		// nothing so far
 	}
 ]);

@@ -7,9 +7,14 @@ import java.util.Date;
  * Date:   16.08.2015
  */
 public class Person {
+	private String id;
 	private String firstName;
 	private String lastName;
 	private Date birthDate;
+
+	public Person()
+	{
+	}
 
 	public Person(String firstName, String lastName) {
 		this.firstName = firstName;
