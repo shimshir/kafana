@@ -1,6 +1,5 @@
-app.controller('homeController', function ($scope, $http) {
-	$http.get(apiEndpoint + "/developers")
-		.success(function (response) {
-			$scope.developers = response;
-		});
-});
+app.controller('homeController', ['$scope', 'Developer',
+	function ($scope, Developer) {
+		$scope.developers = Developer.query();
+	}
+]);

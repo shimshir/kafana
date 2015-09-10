@@ -1,0 +1,35 @@
+body, html {
+	height: 100%;
+}
+
+.container-row {
+	height: 100%;
+	margin: 0;
+}
+
+hr {
+	margin: 0;
+}
+.main {
+	padding: 10px 10px 0 10px;
+}
+
+nav.navbar {
+	border-radius: 0;
+}
+
+@media (min-width: 765px) {
+	.main {
+		position: absolute;
+		width: calc(100% - 40px);
+		margin-left: 40px;
+		float: right;
+	}
+}
+
+@media (min-width: 1330px) {
+	.main {
+		width: calc(100% - 200px);
+		margin-left: 200px;
+	}
+}

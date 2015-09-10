@@ -1,1 +1,5 @@
-var apiEndpoint = "http://localhost:8080/halid/api/v1";
+app.config(
+	function($locationProvider) {
+		$locationProvider.html5Mode(true);
+	}
+);
