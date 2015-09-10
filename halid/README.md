@@ -1,2 +1,2 @@
 # halid
-RESTful java backend for brena
+A Spring based RESTful java backend for brena.
