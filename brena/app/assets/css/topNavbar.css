@@ -1,3 +1,13 @@
 nav.topbar {
 	margin-bottom: 0;
 }
+
+nav.topbar img.useravatar {
+	max-height: 24px;
+	max-width: 24px;
+}
+
+nav.topbar a.user-profile-dropdown {
+	padding-top: 13px;
+	padding-bottom: 13px;
+}
