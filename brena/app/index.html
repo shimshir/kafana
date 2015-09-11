@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="brena">
+<html ng-app="brena" ng-controller="mainController">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,17 +23,21 @@
 	<script src="module.js"></script>
 	<script src="config.js"></script>
 	<script src="routes.js"></script>
+	<script src="components/mainController.js"></script>
+	<script src="components/nav/topbar/topNavbarController.js"></script>
+	<script src="components/nav/sidebar/sideNavbarController.js"></script>
 	<script src="components/home/homeController.js"></script>
 	<script src="components/student/studentListController.js"></script>
-	<script src="shared/nav/topbar/topNavbarDirective.js"></script>
-	<script src="shared/nav/sidebar/sideNavbarDirective.js"></script>
+
+	<script src="components/nav/topbar/topNavbarDirective.js"></script>
+	<script src="components/nav/sidebar/sideNavbarDirective.js"></script>
 
 </head>
 <body>
-	<topnavbar></topnavbar>
+	<topnavbar ng-controller="topNavbarController"></topnavbar>
 	<div class="row container-row">
 		<div class="col-sm-1 col-md-2 sidebar-col">
-			<sidenavbar></sidenavbar>
+			<sidenavbar ng-controller="sideNavbarController" ng-show="showSidebar()"></sidenavbar>
 		</div>
 		<div class="col-sm-10 col-md-8">
 			<div ng-view></div>
