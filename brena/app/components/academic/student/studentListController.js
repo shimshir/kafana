@@ -1,5 +1,5 @@
-app.controller('studentListController', ['$scope', 'Student',
-	function ($scope, Student) {
-		$scope.students = Student.query();
+app.controller('studentListController', ['$scope', 'Api',
+	function ($scope, Api) {
+		$scope.students = Api.Student.query();
 	}
 ]);

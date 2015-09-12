@@ -1,6 +1,6 @@
 package ba.beslic.controllers;
 
-import ba.beslic.models.Student;
+import ba.beslic.persistence.models.Student;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

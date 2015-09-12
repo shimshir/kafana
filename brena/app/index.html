@@ -10,6 +10,7 @@
 
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/general.css">
+	<link rel="stylesheet" href="assets/css/content.css">
 	<link rel="stylesheet" href="assets/css/topNavbar.css">
 	<link rel="stylesheet" href="assets/css/sideNavbar.css">
 
@@ -34,12 +35,14 @@
 
 </head>
 <body>
-	<topnavbar ng-controller="topNavbarController"></topnavbar>
-	<div class="row container-row">
+	<div class="row-fluid">
+		<topnavbar ng-controller="topNavbarController"></topnavbar>
+	</div>
+	<div class="row-fluid">
 		<div class="col-sm-1 col-md-2 sidebar-col">
 			<sidenavbar ng-controller="sideNavbarController" ng-show="showSidebar()"></sidenavbar>
 		</div>
-		<div class="col-sm-10 col-md-8">
+		<div class="col-sm-10 col-md-8 content-col">
 			<div ng-view></div>
 		</div>
 	</div>

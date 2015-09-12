@@ -1,3 +1,4 @@
 target/
 .idea/
-halid.iml
+*.iml
+embeddedDB/kafanadev.lock.db

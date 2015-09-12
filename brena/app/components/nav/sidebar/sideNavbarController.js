@@ -1,5 +1,5 @@
-app.controller('sideNavbarController', ['$scope', '$location',
-	function ($scope, $location) {
+app.controller('sideNavbarController', ['$scope', '$location', 'Api',
+	function ($scope, $location, Api) {
 
 		$scope.isActive = function (viewLocation) {
 			return $location.path().startsWith(viewLocation);
@@ -9,23 +9,6 @@ app.controller('sideNavbarController', ['$scope', '$location',
 			return $location.path() != "/";
 		};
 
-		$scope.sidebarLinks = [
-			{
-				name: "Students",
-				url: "/academic/students",
-				links: []
-			},
-			{
-				name: "Courses",
-				url: "/academic/courses",
-				links: [
-					{
-						name: "Math",
-						url: "/academic/courses/math",
-						links: []
-					}
-				]
-			}
-		]
+		$scope.sidebar = Api.Sidebar.get({path: $location.path().substring(1)});
 	}
 ]);

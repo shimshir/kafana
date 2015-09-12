@@ -1,4 +1,4 @@
-package ba.beslic.models;
+package ba.beslic.persistence.models;
 
 import java.util.Date;
 
