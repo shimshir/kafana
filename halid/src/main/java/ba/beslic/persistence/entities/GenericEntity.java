@@ -1,4 +1,4 @@
-package ba.beslic.persistence.models;
+package ba.beslic.persistence.entities;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -12,13 +12,14 @@ import javax.persistence.MappedSuperclass;
  * Date:   12.09.2015
  */
 @MappedSuperclass
-public class GenericModel {
+public class GenericEntity
+{
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	public GenericModel() {
+	public GenericEntity() {
 	}
 
 	public int getId() {

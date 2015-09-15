@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="brena" ng-controller="mainController">
+<html ng-app="brena">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,23 +24,25 @@
 	<script src="module.js"></script>
 	<script src="config.js"></script>
 	<script src="routes.js"></script>
-	<script src="components/mainController.js"></script>
+
 	<script src="components/nav/topbar/topNavbarController.js"></script>
 	<script src="components/nav/sidebar/sideNavbarController.js"></script>
-	<script src="components/home/homeController.js"></script>
-	<script src="components/academic/student/studentListController.js"></script>
-
 	<script src="components/nav/topbar/topNavbarDirective.js"></script>
 	<script src="components/nav/sidebar/sideNavbarDirective.js"></script>
 
+	<script src="components/rootController.js"></script>
+	<script src="components/views/main/mainController.js"></script>
+	<script src="components/views/home/homeController.js"></script>
+	<script src="components/views/academic/student/studentListController.js"></script>
+
 </head>
-<body>
+<body ng-controller="rootController">
 	<div class="row-fluid">
 		<topnavbar ng-controller="topNavbarController"></topnavbar>
 	</div>
 	<div class="row-fluid">
 		<div class="col-sm-1 col-md-2 sidebar-col">
-			<sidenavbar ng-controller="sideNavbarController" ng-show="showSidebar()"></sidenavbar>
+			<sidenavbar ng-controller="sideNavbarController" ng-if="showSidebar()"></sidenavbar>
 		</div>
 		<div class="col-sm-10 col-md-8 content-col">
 			<div ng-view></div>

@@ -5,10 +5,10 @@ app.controller('sideNavbarController', ['$scope', '$location', 'Api',
 			return $location.path().startsWith(viewLocation);
 		};
 
-		$scope.showSidebar = function () {
-			return $location.path() != "/";
-		};
-
 		$scope.sidebar = Api.Sidebar.get({path: $location.path().substring(1)});
+
+		$scope.$on('$locationChangeStart', function(event) {
+			$scope.sidebar = Api.Sidebar.get({path: $location.path().substring(1)});
+		});
 	}
 ]);

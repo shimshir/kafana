@@ -1,4 +1,4 @@
-package ba.beslic.persistence.models;
+package ba.beslic.persistence.entities;
 
 import java.util.List;
 

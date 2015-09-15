@@ -1,10 +1,11 @@
-package ba.beslic.persistence.models.navigation;
+package ba.beslic.persistence.entities.navigation;
 
-import ba.beslic.persistence.models.GenericModel;
+import ba.beslic.persistence.entities.GenericEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -16,19 +17,19 @@ import java.util.List;
  * Author: Admir Memić
  * Date:   12.09.2015
  */
-@Entity
+@Entity(name = "NavLink")
 @Table(name = "nav_link")
-public class NavLinkModel extends GenericModel
+public class NavLinkEntity extends GenericEntity
 {
 	@Column(name = "name")
 	private String name;
 	@Column(name = "url")
 	private String url;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "nav_link_2_nav_link", joinColumns = {
 			@JoinColumn(name = "parent_link_id", referencedColumnName = "id") }, inverseJoinColumns = {
 			@JoinColumn(name = "child_link_id", referencedColumnName = "id") })
-	private List<NavLinkModel> childLinks;
+	private List<NavLinkEntity> childLinks;
 
 	public String getName()
 	{
@@ -50,12 +51,12 @@ public class NavLinkModel extends GenericModel
 		this.url = url;
 	}
 
-	public List<NavLinkModel> getChildLinks()
+	public List<NavLinkEntity> getChildLinks()
 	{
 		return childLinks;
 	}
 
-	public void setChildLinks(List<NavLinkModel> childLinks)
+	public void setChildLinks(List<NavLinkEntity> childLinks)
 	{
 		this.childLinks = childLinks;
 	}

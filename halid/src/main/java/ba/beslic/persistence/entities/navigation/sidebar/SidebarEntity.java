@@ -1,18 +1,17 @@
-package ba.beslic.persistence.models.navigation.sidebar;
+package ba.beslic.persistence.entities.navigation.sidebar;
 
 
-import ba.beslic.persistence.models.GenericModel;
-import ba.beslic.persistence.models.navigation.NavLinkModel;
+import ba.beslic.persistence.entities.GenericEntity;
+import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.List;
 
 
@@ -20,17 +19,17 @@ import java.util.List;
  * Author: Admir Memić
  * Date:   12.09.2015
  */
-@Entity
+@Entity(name = "Sidebar")
 @Table(name = "sidebar")
-public class SidebarModel extends GenericModel
+public class SidebarEntity extends GenericEntity
 {
-	@Column(name = "path")
+	@Column(name = "path", unique = true)
 	private String path;
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "sidebar_2_nav_link", joinColumns = {
 			@JoinColumn(name = "sidebar_id", referencedColumnName = "id") }, inverseJoinColumns = {
 			@JoinColumn(name = "nav_link_id", referencedColumnName = "id") })
-	private List<NavLinkModel> links;
+	private List<NavLinkEntity> links;
 
 	public String getPath()
 	{
@@ -42,12 +41,12 @@ public class SidebarModel extends GenericModel
 		this.path = path;
 	}
 
-	public List<NavLinkModel> getLinks()
+	public List<NavLinkEntity> getLinks()
 	{
 		return links;
 	}
 
-	public void setLinks(List<NavLinkModel> links)
+	public void setLinks(List<NavLinkEntity> links)
 	{
 		this.links = links;
 	}
