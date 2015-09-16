@@ -5,7 +5,9 @@ import ba.beslic.persistence.daos.navigation.NavLinkDao;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -17,14 +19,24 @@ import java.util.List;
 public class NavLinkDaoImpl extends GenericDaoImpl<NavLinkEntity> implements NavLinkDao
 {
 	@Override
+	protected void init()
+	{
+		this.clazz = NavLinkEntity.class;
+	}
+
+	@Override
 	public List<NavLinkEntity> getByUrl(String url)
 	{
-		return (List<NavLinkEntity>) hibernateTemplate.find("from NavLink where url = ?", url);
+		Map<String, Object> params = new HashMap<>();
+		params.put("url", url);
+		return find(params, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
 	}
 
 	@Override
 	public List<NavLinkEntity> getByName(String name)
 	{
-		return (List<NavLinkEntity>) hibernateTemplate.find("from NavLink where name = ?", name);
+		Map<String, Object> params = new HashMap<>();
+		params.put("name", name);
+		return find(params, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
 	}
 }

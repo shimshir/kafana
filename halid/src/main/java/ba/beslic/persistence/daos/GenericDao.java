@@ -3,6 +3,7 @@ package ba.beslic.persistence.daos;
 import ba.beslic.persistence.entities.GenericEntity;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -12,8 +13,9 @@ import java.util.List;
  */
 public interface GenericDao<T extends GenericEntity>
 {
-	T getById(int id);
-	List<T> getAll();
+	T getById(int id, String... fetchProfiles);
+	List<T> find(Map<String, Object> params, String... fetchProfiles);
+	T findUnique(Map<String, Object> params, String... fetchProfiles);
 	void save(T entity);
 	void update(T entity);
 	void delete(T entity);

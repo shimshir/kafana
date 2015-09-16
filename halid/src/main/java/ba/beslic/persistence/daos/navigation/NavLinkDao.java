@@ -13,8 +13,6 @@ import java.util.List;
  */
 public interface NavLinkDao extends GenericDao<NavLinkEntity>
 {
-	NavLinkEntity getById(int id);
 	List<NavLinkEntity> getByUrl(String url);
 	List<NavLinkEntity> getByName(String name);
-	List<NavLinkEntity> getAll();
 }

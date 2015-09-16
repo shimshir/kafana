@@ -2,8 +2,14 @@ package ba.beslic.persistence.daos.navigation.sidebar.impl;
 
 import ba.beslic.persistence.daos.impl.GenericDaoImpl;
 import ba.beslic.persistence.daos.navigation.sidebar.SidebarDao;
+import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -12,11 +18,20 @@ import org.springframework.stereotype.Repository;
  * E-Mail:  admir.memic@dmc.de
  */
 @Repository("sidebarDao")
+@Transactional
 public class SidebarDaoImpl extends GenericDaoImpl<SidebarEntity> implements SidebarDao
 {
 	@Override
+	public void init()
+	{
+		this.clazz = SidebarEntity.class;
+	}
+
+	@Override
 	public SidebarEntity getByPath(String path)
 	{
-		return (SidebarEntity) hibernateTemplate.find("from Sidebar where path = ?", path).get(0);
+		Map<String, Object> params = new HashMap<>();
+		params.put("path", path);
+		return find(params, SidebarEntity.FP_SIDEBAR_LINKS, NavLinkEntity.FP_NAVLINK_CHILDLINKS).get(0);
 	}
 }

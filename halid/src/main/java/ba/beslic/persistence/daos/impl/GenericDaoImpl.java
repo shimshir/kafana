@@ -2,11 +2,17 @@ package ba.beslic.persistence.daos.impl;
 
 import ba.beslic.persistence.daos.GenericDao;
 import ba.beslic.persistence.entities.GenericEntity;
-import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -14,40 +20,84 @@ import java.util.List;
  * Date:    15.09.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class GenericDaoImpl<T extends GenericEntity> implements GenericDao<T>
+@SuppressWarnings("unchecked")
+public abstract class GenericDaoImpl<T extends GenericEntity> implements GenericDao<T>
 {
 	@Autowired
-	protected HibernateTemplate hibernateTemplate;
+	protected SessionFactory sessionFactory;
 
-	private Class<T> clazz;
+	protected Class<T> clazz;
+
+	/**
+	 * Needed for setting clazz to the generic class T
+	 */
+	@PostConstruct
+	protected abstract void init();
 
 	@Override
-	public T getById(int id)
+	public T getById(int id, String... fetchProfiles)
 	{
-		return hibernateTemplate.get(clazz, id);
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		return findUnique(params, fetchProfiles);
 	}
 
 	@Override
-	public List<T> getAll()
+	public List<T> find(Map<String, Object> params, String... fetchProfiles)
 	{
-		return (List<T>) hibernateTemplate.findByCriteria(DetachedCriteria.forClass(clazz));
+		try (Session session = sessionFactory.openSession())
+		{
+			for(String fetchProfile : fetchProfiles)
+			{
+				session.enableFetchProfile(fetchProfile);
+			}
+			Criteria criteria = session.createCriteria(clazz);
+			criteria.add(Restrictions.allEq(params));
+
+			return criteria.list();
+		}
+	}
+
+	@Override
+	public T findUnique(Map<String, Object> params, String... fetchProfiles)
+	{
+		try (Session session = sessionFactory.openSession())
+		{
+			for(String fetchProfile : fetchProfiles)
+			{
+				session.enableFetchProfile(fetchProfile);
+			}
+			Criteria criteria = session.createCriteria(clazz);
+			criteria.add(Restrictions.allEq(params));
+
+			return (T) criteria.uniqueResult();
+		}
 	}
 
 	@Override
 	public void save(T entity)
 	{
-		hibernateTemplate.save(entity);
+		try (Session session = sessionFactory.openSession())
+		{
+			session.save(entity);
+		}
 	}
 
 	@Override
 	public void update(T entity)
 	{
-		hibernateTemplate.update(entity);
+		try (Session session = sessionFactory.openSession())
+		{
+			session.update(entity);
+		}
 	}
 
 	@Override
 	public void delete(T entity)
 	{
-		hibernateTemplate.delete(entity);
+		try (Session session = sessionFactory.openSession())
+		{
+			session.delete(entity);
+		}
 	}
 }
