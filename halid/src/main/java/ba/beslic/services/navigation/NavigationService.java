@@ -1,5 +1,6 @@
 package ba.beslic.services.navigation;
 
+import ba.beslic.persistence.entities.GenericEntity;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 
@@ -19,4 +20,6 @@ public interface NavigationService
 	NavLinkEntity getNavLinkById(int id);
 	List<NavLinkEntity> getNavLinksByUrl(String url);
 	List<NavLinkEntity> getNavLinksByName(String name);
+
+	void save(GenericEntity entity);
 }

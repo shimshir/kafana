@@ -1,6 +1,5 @@
 package ba.beslic.controllers.navigation;
 
-import ba.beslic.persistence.daos.navigation.sidebar.SidebarDao;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 import ba.beslic.services.navigation.NavigationService;
@@ -22,13 +21,16 @@ import java.util.List;
 public class SidebarController {
 	@Autowired
 	private NavigationService navigationService;
-	@Autowired
-	private SidebarDao sidebarDao;
 
 	@RequestMapping
 	public SidebarEntity getNoSidebar() {
+		return null;
+	}
+
+	@RequestMapping(value = "/{path}")
+	public SidebarEntity getSidebarByPath(@PathVariable String path) {
 		SidebarEntity entity = new SidebarEntity();
-		entity.setPath("/social");
+		entity.setPath(path);
 		List<NavLinkEntity> links = new ArrayList<>();
 		NavLinkEntity events = new NavLinkEntity();
 		events.setUrl("/social/events");
@@ -44,12 +46,7 @@ public class SidebarController {
 		links.add(chat);
 		entity.setLinks(links);
 
-		sidebarDao.save(entity);
-		return null;
-	}
-
-	@RequestMapping(value = "/{path}")
-	public SidebarEntity getSidebarByPath(@PathVariable String path) {
-		return navigationService.getSidebarByPath("/" + path);
+		navigationService.save(entity);
+		return entity;
 	}
 }

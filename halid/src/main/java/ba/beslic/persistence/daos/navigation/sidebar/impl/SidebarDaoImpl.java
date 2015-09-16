@@ -5,9 +5,7 @@ import ba.beslic.persistence.daos.navigation.sidebar.SidebarDao;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +16,6 @@ import java.util.Map;
  * E-Mail:  admir.memic@dmc.de
  */
 @Repository("sidebarDao")
-@Transactional
 public class SidebarDaoImpl extends GenericDaoImpl<SidebarEntity> implements SidebarDao
 {
 	@Override

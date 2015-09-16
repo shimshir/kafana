@@ -2,11 +2,13 @@ package ba.beslic.services.navigation.impl;
 
 import ba.beslic.persistence.daos.navigation.NavLinkDao;
 import ba.beslic.persistence.daos.navigation.sidebar.SidebarDao;
+import ba.beslic.persistence.entities.GenericEntity;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 import ba.beslic.services.navigation.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,7 +18,8 @@ import java.util.List;
  * Date:    15.09.2015
  * E-Mail:  admir.memic@dmc.de
  */
-@Service
+@Service("navigationService")
+@Transactional
 public class NavigationServiceImpl implements NavigationService
 {
 	@Autowired
@@ -52,5 +55,10 @@ public class NavigationServiceImpl implements NavigationService
 	public List<NavLinkEntity> getNavLinksByName(String name)
 	{
 		return navLinkDao.getByName(name);
+	}
+
+	@Override
+	public void save(GenericEntity entity) {
+		sidebarDao.save(entity);
 	}
 }

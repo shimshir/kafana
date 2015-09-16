@@ -41,7 +41,7 @@ public class NavLinkEntity extends GenericEntity
 			name = "nav_link_2_nav_link",
 			joinColumns = @JoinColumn(name = "parent_link_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "child_link_id", referencedColumnName = "id"))
-	@GenericGenerator(name = "uuid-gen", strategy = "uuid")
+	@GenericGenerator(name = "uuid-gen", strategy = "uuid2")
 	@CollectionId(columns = @Column(name = "id"), type = @Type(type = "string"), generator = "uuid-gen")
 	private List<NavLinkEntity> childLinks;
 
