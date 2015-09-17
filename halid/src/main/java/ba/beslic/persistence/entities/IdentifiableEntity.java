@@ -12,14 +12,14 @@ import javax.persistence.MappedSuperclass;
  * Date:   12.09.2015
  */
 @MappedSuperclass
-public class GenericEntity
+public class IdentifiableEntity
 {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	public GenericEntity() {
+	public IdentifiableEntity() {
 	}
 
 	public int getId() {

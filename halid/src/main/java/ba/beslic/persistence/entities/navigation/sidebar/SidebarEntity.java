@@ -1,15 +1,11 @@
 package ba.beslic.persistence.entities.navigation.sidebar;
 
 
-import ba.beslic.persistence.entities.GenericEntity;
+import ba.beslic.persistence.entities.IdentifiableEntity;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
-import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.FetchProfile;
 import org.hibernate.annotations.FetchProfiles;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -30,7 +26,7 @@ import java.util.List;
 		fetchOverrides = {
 				@FetchProfile.FetchOverride(association = "links", entity = SidebarEntity.class, mode = FetchMode.JOIN) },
 		name = SidebarEntity.FP_SIDEBAR_LINKS) })
-public class SidebarEntity extends GenericEntity
+public class SidebarEntity extends IdentifiableEntity
 {
 	public static final String FP_SIDEBAR_LINKS = "sidebar-links";
 
@@ -41,9 +37,7 @@ public class SidebarEntity extends GenericEntity
 			name = "sidebar_2_nav_link",
 			joinColumns = @JoinColumn(name = "sidebar_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "nav_link_id", referencedColumnName = "id"))
-	@GenericGenerator(name = "uuid-gen", strategy = "uuid2")
-	@CollectionId(columns = @Column(name = "id"), type = @Type(type = "string"), generator = "uuid-gen")
-	private List<NavLinkEntity> links;
+	private Set<NavLinkEntity> links;
 
 	public String getPath()
 	{
@@ -55,12 +49,12 @@ public class SidebarEntity extends GenericEntity
 		this.path = path;
 	}
 
-	public List<NavLinkEntity> getLinks()
+	public Set<NavLinkEntity> getLinks()
 	{
 		return links;
 	}
 
-	public void setLinks(List<NavLinkEntity> links)
+	public void setLinks(Set<NavLinkEntity> links)
 	{
 		this.links = links;
 	}
