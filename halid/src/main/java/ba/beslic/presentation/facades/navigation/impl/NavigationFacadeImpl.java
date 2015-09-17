@@ -27,12 +27,12 @@ public class NavigationFacadeImpl implements NavigationFacade
 	@Override
 	public SidebarData getSidebarByEncPath(String encodedPath)
 	{
-		String realPath = encodedPath.replace("_", "/");
+		String decodedPath = encodedPath.replace("_", "/");
 		SidebarEntity sidebarEntity = null;
-		while(realPath.length() > 0 && sidebarEntity == null)
+		while(decodedPath.length() > 0 && sidebarEntity == null)
 		{
-			sidebarEntity = navigationService.getSidebarByPathDeep(realPath);
-			realPath = realPath.substring(0, realPath.lastIndexOf("/"));
+			sidebarEntity = navigationService.getSidebarByPathDeep(decodedPath);
+			decodedPath = decodedPath.substring(0, decodedPath.lastIndexOf("/"));
 		}
 		return sidebarConverter.convertToData(sidebarEntity);
 	}
