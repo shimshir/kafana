@@ -7,8 +7,13 @@ app.controller('sideNavbarController', ['$scope', '$location', 'Api',
 
 		$scope.sidebar = Api.Sidebar.get({path: $location.path().replace(/\//g,'_')});
 
-		$scope.$on('$locationChangeStart', function(event) {
-			$scope.sidebar = Api.Sidebar.get({path: $location.path().replace(/\//g,'_')});
+		$scope.$on('$locationChangeStart', function() {
+			Api.Sidebar.get({path: $location.path().replace(/\//g,'_')},
+				function (response) {
+					if (response.path != $scope.sidebar.path)
+						$scope.sidebar = response;
+				}
+			);
 		});
 	}
 ]);
