@@ -24,18 +24,15 @@ public class DaoImpl implements Dao
 	@Autowired
 	protected SessionFactory sessionFactory;
 	@Override
-	public <T extends IdentifiableEntity> T getById(Class<T> clazz, int id, String... fetchProfiles) {
+	public <T extends IdentifiableEntity> T getById(Class<T> clazz, int id) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", id);
-		return findUnique(clazz, params, fetchProfiles);
+		return findUnique(clazz, params);
 	}
 
 	@Override
-	public <T extends IdentifiableEntity> List<T> find(Class<T> clazz, Map<String, Object> params, String... fetchProfiles) {
+	public <T extends IdentifiableEntity> List<T> find(Class<T> clazz, Map<String, Object> params) {
 		Session session = sessionFactory.getCurrentSession();
-		for (String fetchProfile : fetchProfiles) {
-			session.enableFetchProfile(fetchProfile);
-		}
 		Criteria criteria = session.createCriteria(clazz);
 		criteria.add(Restrictions.allEq(params));
 
@@ -43,11 +40,8 @@ public class DaoImpl implements Dao
 	}
 
 	@Override
-	public <T extends IdentifiableEntity> T findUnique(Class<T> clazz, Map<String, Object> params, String... fetchProfiles) {
+	public <T extends IdentifiableEntity> T findUnique(Class<T> clazz, Map<String, Object> params) {
 		Session session = sessionFactory.getCurrentSession();
-		for (String fetchProfile : fetchProfiles) {
-			session.enableFetchProfile(fetchProfile);
-		}
 		Criteria criteria = session.createCriteria(clazz);
 		criteria.add(Restrictions.allEq(params));
 

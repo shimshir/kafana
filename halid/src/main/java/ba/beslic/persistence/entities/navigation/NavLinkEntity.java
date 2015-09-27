@@ -21,14 +21,8 @@ import java.util.Set;
  */
 @Entity(name = "NavLink")
 @Table(name = "nav_link")
-@FetchProfiles({ @FetchProfile(
-		fetchOverrides = {
-				@FetchProfile.FetchOverride(association = "childLinks", entity = NavLinkEntity.class, mode = FetchMode.JOIN) },
-		name = NavLinkEntity.FP_NAVLINK_CHILDLINKS) })
 public class NavLinkEntity extends IdentifiableEntity
 {
-	public static final String FP_NAVLINK_CHILDLINKS = "navLink-childLinks";
-
 	@Column(name = "name")
 	private String name;
 	@Column(name = "url")

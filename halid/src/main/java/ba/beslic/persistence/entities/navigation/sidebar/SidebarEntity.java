@@ -22,14 +22,8 @@ import java.util.Set;
  */
 @Entity(name = "Sidebar")
 @Table(name = "sidebar")
-@FetchProfiles({ @FetchProfile(
-		fetchOverrides = {
-				@FetchProfile.FetchOverride(association = "links", entity = SidebarEntity.class, mode = FetchMode.JOIN) },
-		name = SidebarEntity.FP_SIDEBAR_LINKS) })
 public class SidebarEntity extends IdentifiableEntity
 {
-	public static final String FP_SIDEBAR_LINKS = "sidebar-links";
-
 	@Column(name = "path", unique = true)
 	private String path;
 	@OneToMany(cascade = CascadeType.ALL)

@@ -7,7 +7,6 @@ import ba.beslic.persistence.entities.navigation.sidebar.SidebarEntity;
 import ba.beslic.service.services.navigation.NavigationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,61 +23,31 @@ public class NavigationServiceImpl implements NavigationService
 	private NavigationDao navigationDao;
 
 	@Override
-	public SidebarEntity getSidebarByIdDeep(int id)
-	{
-		return navigationDao.getById(SidebarEntity.class, id, SidebarEntity.FP_SIDEBAR_LINKS, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
-	}
-
-	@Override
-	public SidebarEntity getSidebarByPathDeep(String path)
-	{
-		return navigationDao.getSidebarByPath(path, SidebarEntity.FP_SIDEBAR_LINKS, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
-	}
-
-	@Override
-	public NavLinkEntity getNavLinkByIdDeep(int id)
-	{
-		return navigationDao.getById(NavLinkEntity.class, id, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
-	}
-
-	@Override
-	public List<NavLinkEntity> getNavLinksByUrlDeep(String url)
-	{
-		return navigationDao.getNavLinkByUrl(url, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
-	}
-
-	@Override
-	public List<NavLinkEntity> getNavLinksByNameDeep(String name)
-	{
-		return navigationDao.getNavLinkByName(name, NavLinkEntity.FP_NAVLINK_CHILDLINKS);
-	}
-
-	@Override
-	public SidebarEntity getSidebarByIdShallow(int id)
+	public SidebarEntity getSidebarById(int id)
 	{
 		return navigationDao.getById(SidebarEntity.class, id);
 	}
 
 	@Override
-	public SidebarEntity getSidebarByPathShallow(String path)
+	public SidebarEntity getSidebarByPath(String path)
 	{
 		return navigationDao.getSidebarByPath(path);
 	}
 
 	@Override
-	public NavLinkEntity getNavLinkByIdShallow(int id)
+	public NavLinkEntity getNavLinkById(int id)
 	{
 		return navigationDao.getById(NavLinkEntity.class, id);
 	}
 
 	@Override
-	public List<NavLinkEntity> getNavLinksByUrlShallow(String url)
+	public List<NavLinkEntity> getNavLinksByUrl(String url)
 	{
 		return navigationDao.getNavLinkByUrl(url);
 	}
 
 	@Override
-	public List<NavLinkEntity> getNavLinksByNameShallow(String name)
+	public List<NavLinkEntity> getNavLinksByName(String name)
 	{
 		return navigationDao.getNavLinkByName(name);
 	}

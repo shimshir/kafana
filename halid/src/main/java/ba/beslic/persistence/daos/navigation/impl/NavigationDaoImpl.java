@@ -20,26 +20,26 @@ import java.util.Map;
 public class NavigationDaoImpl extends DaoImpl implements NavigationDao
 {
 	@Override
-	public List<NavLinkEntity> getNavLinkByUrl(String url, String... fetchProfiles)
+	public List<NavLinkEntity> getNavLinkByUrl(String url)
 	{
 		Map<String, Object> params = new HashMap<>();
 		params.put("url", url);
-		return find(NavLinkEntity.class, params, fetchProfiles);
+		return find(NavLinkEntity.class, params);
 	}
 
 	@Override
-	public List<NavLinkEntity> getNavLinkByName(String name, String... fetchProfiles)
+	public List<NavLinkEntity> getNavLinkByName(String name)
 	{
 		Map<String, Object> params = new HashMap<>();
 		params.put("name", name);
-		return find(NavLinkEntity.class, params, fetchProfiles);
+		return find(NavLinkEntity.class, params);
 	}
 
 	@Override
-	public SidebarEntity getSidebarByPath(String path, String... fetchProfiles)
+	public SidebarEntity getSidebarByPath(String path)
 	{
 		Map<String, Object> params = new HashMap<>();
 		params.put("path", path);
-		return findUnique(SidebarEntity.class, params, fetchProfiles);
+		return findUnique(SidebarEntity.class, params);
 	}
 }

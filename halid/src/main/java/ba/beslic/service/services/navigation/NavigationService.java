@@ -14,19 +14,12 @@ import java.util.List;
  */
 public interface NavigationService
 {
-	SidebarEntity getSidebarByIdDeep(int id);
-	SidebarEntity getSidebarByPathDeep(String path);
+	SidebarEntity getSidebarById(int id);
+	SidebarEntity getSidebarByPath(String path);
 
-	NavLinkEntity getNavLinkByIdDeep(int id);
-	List<NavLinkEntity> getNavLinksByUrlDeep(String url);
-	List<NavLinkEntity> getNavLinksByNameDeep(String name);
-
-	SidebarEntity getSidebarByIdShallow(int id);
-	SidebarEntity getSidebarByPathShallow(String path);
-
-	NavLinkEntity getNavLinkByIdShallow(int id);
-	List<NavLinkEntity> getNavLinksByUrlShallow(String url);
-	List<NavLinkEntity> getNavLinksByNameShallow(String name);
+	NavLinkEntity getNavLinkById(int id);
+	List<NavLinkEntity> getNavLinksByUrl(String url);
+	List<NavLinkEntity> getNavLinksByName(String name);
 
 	void save(IdentifiableEntity entity);
 }

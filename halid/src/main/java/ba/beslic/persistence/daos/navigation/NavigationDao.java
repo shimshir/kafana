@@ -14,8 +14,8 @@ import java.util.List;
  */
 public interface NavigationDao extends Dao
 {
-	List<NavLinkEntity> getNavLinkByUrl(String url, String... fetchProfiles);
-	List<NavLinkEntity> getNavLinkByName(String name, String... fetchProfiles);
+	List<NavLinkEntity> getNavLinkByUrl(String url);
+	List<NavLinkEntity> getNavLinkByName(String name);
 
-	SidebarEntity getSidebarByPath(String path, String... fetchProfiles);
+	SidebarEntity getSidebarByPath(String path);
 }
