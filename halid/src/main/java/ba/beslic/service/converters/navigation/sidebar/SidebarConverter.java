@@ -22,27 +22,28 @@ import java.util.stream.Collectors;
  * E-Mail:  admir.memic@dmc.de
  */
 @Component("sidebarConverter")
-public class SidebarConverter implements Converter<SidebarEntity, SidebarData>
-{
+public class SidebarConverter implements Converter<SidebarEntity, SidebarData> {
 	@Autowired
 	private NavLinkConverter navLinkConverter;
 
 	@Override
-	public SidebarData convertToData(SidebarEntity entity)
-	{
-		SidebarData data = new SidebarData();
-		data.setPath(entity.getPath());
-		List<NavLinkEntity> sortedEntityLinks = new ArrayList<>();
-		sortedEntityLinks.addAll(entity.getLinks());
-		Collections.sort(sortedEntityLinks, (link1, link2) -> link1.getDisplayPriority() - link2.getDisplayPriority());
-		List<NavLinkData> dataLinks = sortedEntityLinks.stream().map(navLinkConverter::convertToData).collect(Collectors.toList());
-		data.setLinks(dataLinks);
-		return data;
+	public SidebarData convertToData(SidebarEntity entity) {
+		if (entity != null) {
+			SidebarData data = new SidebarData();
+			data.setPath(entity.getPath());
+			List<NavLinkEntity> sortedEntityLinks = new ArrayList<>();
+			sortedEntityLinks.addAll(entity.getLinks());
+			Collections.sort(sortedEntityLinks, (link1, link2) -> link1.getDisplayPriority() - link2.getDisplayPriority());
+			List<NavLinkData> dataLinks = sortedEntityLinks.stream().map(navLinkConverter::convertToData).collect(Collectors.toList());
+			data.setLinks(dataLinks);
+			return data;
+		} else {
+			return null;
+		}
 	}
 
 	@Override
-	public SidebarEntity convertToEntity(SidebarData data)
-	{
+	public SidebarEntity convertToEntity(SidebarData data) {
 		SidebarEntity entity = new SidebarEntity();
 		entity.setPath(data.getPath());
 		Set<NavLinkEntity> entityLinks = data.getLinks().stream().map(navLinkConverter::convertToEntity).collect(Collectors.toSet());

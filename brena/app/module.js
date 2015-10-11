@@ -1,1 +1,1 @@
-var app = angular.module('brena', ['ngRoute', 'brenaServices']);
+var app = angular.module('brena', ['ui.router', 'ngResource']);

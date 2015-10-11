@@ -17,11 +17,13 @@
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.js"></script>
-	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="bower_components/angular-resource/angular-resource.js"></script>
 
-	<script src="services.js"></script>
+
 	<script src="module.js"></script>
+	<script src="services.js"></script>
+	<script src="constants.js"></script>
 	<script src="config.js"></script>
 	<script src="routes.js"></script>
 
@@ -31,6 +33,7 @@
 	<script src="components/nav/sidebar/sideNavbarDirective.js"></script>
 
 	<script src="components/rootController.js"></script>
+	<script src="components/views/login/loginController.js"></script>
 	<script src="components/views/main/mainController.js"></script>
 	<script src="components/views/home/homeController.js"></script>
 	<script src="components/views/academic/student/studentListController.js"></script>
@@ -42,10 +45,10 @@
 	</div>
 	<div class="row-fluid">
 		<div class="col-sm-1 col-md-2 sidebar-col">
-			<sidenavbar ng-controller="sideNavbarController" ng-if="showSidebar()"></sidenavbar>
+			<sidenavbar ng-controller="sideNavbarController"></sidenavbar>
 		</div>
 		<div class="col-sm-10 col-md-8 content-col">
-			<div ng-view></div>
+			<div ui-view></div>
 		</div>
 	</div>
 </body>

@@ -1,8 +1,9 @@
-app.controller('rootController', ['$scope', '$location',
-	function ($scope, $location) {
+app.controller('rootController', function ($scope, USER_ROLES, AuthService) {
+	$scope.currentUser = null;
+	$scope.userRoles = USER_ROLES;
+	$scope.isAuthorized = AuthService.isAuthorized;
 
-		$scope.showSidebar = function () {
-			return $location.path() != "/";
-		};
-	}
-]);
+	$scope.setCurrentUser = function (user) {
+		$scope.currentUser = user;
+	};
+});
