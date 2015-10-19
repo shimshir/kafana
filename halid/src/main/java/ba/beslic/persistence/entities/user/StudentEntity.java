@@ -1,4 +1,7 @@
-package ba.beslic.persistence.entities;
+package ba.beslic.persistence.entities.user;
+
+
+import ba.beslic.persistence.entities.ScoreEntity;
 
 import javax.persistence.*;
 import java.util.Set;

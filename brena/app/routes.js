@@ -27,9 +27,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: 'components/views/login/loginView.html'
 		})
-		.state('academic.students', {
+		.state('academic-students', {
 			url: '/academic/students',
 			templateUrl: 'components/views/academic/student/studentListView.html'
+		})
+		.state('academic-courses', {
+			url: '/academic/courses',
+			templateUrl: 'components/views/academic/course/courseListView.html'
 		})
 		.state('404', {
 			templateUrl: 'shared/404.html'

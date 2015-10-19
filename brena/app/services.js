@@ -5,28 +5,28 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 		};
 	}
 ).factory('AuthService', function ($http, Session, APP_CONSTANTS) {
-		return {
-			login: function (credentials) {
-						return $http
-							.post(APP_CONSTANTS.apiEndpoint + '/login', credentials)
-							.then(function (response) {
-								Session.create(response.session.id, response.session.user.id, response.session.user.role);
-								return response.session.user;
-							});
-					},
+	var authService = {};
 
-			isAuthenticated: function () {
-				return !!Session.userId;
-			},
+	authService.login = function (credentials) {
+		return $http.post(APP_CONSTANTS.apiEndpoint + '/login', credentials)
+					.then(function (res) {
+						Session.create(res.id, res.user.id, res.user.role);
+						return res.user;
+					});
+				};
 
-			isAuthorized: function (authorizedRoles) {
-				if (!angular.isArray(authorizedRoles)) {
-					authorizedRoles = [authorizedRoles];
-				}
-				return (authService.isAuthenticated() &&
-				authorizedRoles.indexOf(Session.userRole) !== -1);
-			}
-		};
+	authService.isAuthenticated = function () {
+		return !!Session.userId;
+	};
+
+	authService.isAuthorized = function (authorizedRoles) {
+		if (!angular.isArray(authorizedRoles)) {
+			authorizedRoles = [authorizedRoles];
+		}
+		return (authService.isAuthenticated() && authorizedRoles.indexOf(Session.userRole) !== -1);
+	};
+
+	return authService;
 	}
 ).service('Session', function () {
 		this.create = function (sessionId, userId, userRole) {
