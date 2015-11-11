@@ -11,7 +11,6 @@ import java.util.Set;
  * E-Mail:  admir.memic@dmc.de
  */
 @Entity(name = "Student")
-@Table(name = "student")
 public class StudentEntity extends UserEntity {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(

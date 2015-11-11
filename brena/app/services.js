@@ -10,8 +10,9 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 	authService.login = function (credentials) {
 		return $http.post(APP_CONSTANTS.apiEndpoint + '/login', credentials)
 					.then(function (res) {
-						Session.create(res.id, res.user.id, res.user.role);
-						return res.user;
+						var userSession = res.data;
+						Session.create(userSession.id, userSession.user.id, userSession.user.account.roles);
+						return userSession.user;
 					});
 				};
 
@@ -29,15 +30,15 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 	return authService;
 	}
 ).service('Session', function () {
-		this.create = function (sessionId, userId, userRole) {
+		this.create = function (sessionId, userId, userRoles) {
 			this.id = sessionId;
 			this.userId = userId;
-			this.userRole = userRole;
+			this.userRoles = userRoles;
 		};
 		this.destroy = function () {
 			this.id = null;
 			this.userId = null;
-			this.userRole = null;
+			this.userRoles = null;
 		};
 	}
 );
