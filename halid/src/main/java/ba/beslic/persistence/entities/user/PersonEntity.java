@@ -1,5 +1,7 @@
 package ba.beslic.persistence.entities.user;
 
+import ba.beslic.persistence.entities.IdentifiableEntity;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -9,7 +11,7 @@ import javax.persistence.MappedSuperclass;
  * E-Mail:  admir.memic@dmc.de
  */
 @MappedSuperclass
-public class PersonEntity extends UserEntity {
+public class PersonEntity extends IdentifiableEntity {
 	@Column(name = "first_name")
 	private String firstName;
 	@Column(name = "last_name")

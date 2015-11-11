@@ -1,6 +1,6 @@
 package ba.beslic.controllers.login;
 
-import ba.beslic.persistence.entities.user.UserEntity;
+import ba.beslic.persistence.entities.user.AccountEntity;
 import ba.beslic.presentation.data.user.CredentialsData;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
 	@RequestMapping
-	public UserEntity login(@RequestBody CredentialsData credentialsData) {
-		return new UserEntity();
+	public AccountEntity login(@RequestBody CredentialsData credentialsData) {
+		return new AccountEntity();
 	}
 }
