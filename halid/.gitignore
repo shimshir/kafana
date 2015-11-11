@@ -1,4 +1,3 @@
 target/
 .idea/
 *.iml
-embeddedDB/kafanadev.lock.db
