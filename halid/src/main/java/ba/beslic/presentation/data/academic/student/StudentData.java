@@ -1,5 +1,6 @@
-package ba.beslic.presentation.data.user.student;
+package ba.beslic.presentation.data.academic.student;
 
+import ba.beslic.presentation.data.academic.CourseData;
 import ba.beslic.presentation.data.user.UserData;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class StudentData extends UserData {
 
 	private String cardCode;
 	private List<ScoreData> scores;
+	private List<CourseData> courses;
 
 	public String getCardCode() {
 		return cardCode;
@@ -28,5 +30,13 @@ public class StudentData extends UserData {
 
 	public void setScores(List<ScoreData> scores) {
 		this.scores = scores;
+	}
+
+	public List<CourseData> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(List<CourseData> courses) {
+		this.courses = courses;
 	}
 }

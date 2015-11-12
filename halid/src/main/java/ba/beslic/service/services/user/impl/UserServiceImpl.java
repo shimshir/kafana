@@ -2,8 +2,7 @@ package ba.beslic.service.services.user.impl;
 
 import ba.beslic.persistence.daos.user.UserDao;
 import ba.beslic.persistence.entities.user.UserEntity;
-import ba.beslic.persistence.entities.user.student.StudentEntity;
-import ba.beslic.presentation.data.user.student.StudentData;
+import ba.beslic.persistence.entities.academic.student.StudentEntity;
 import ba.beslic.service.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

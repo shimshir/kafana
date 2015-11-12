@@ -1,4 +1,4 @@
-package ba.beslic.persistence.entities.user.student;
+package ba.beslic.persistence.entities.academic;
 
 import ba.beslic.persistence.entities.IdentifiableEntity;
 

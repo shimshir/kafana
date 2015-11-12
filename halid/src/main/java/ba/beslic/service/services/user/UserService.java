@@ -1,8 +1,7 @@
 package ba.beslic.service.services.user;
 
 import ba.beslic.persistence.entities.user.UserEntity;
-import ba.beslic.persistence.entities.user.student.StudentEntity;
-import ba.beslic.presentation.data.user.student.StudentData;
+import ba.beslic.persistence.entities.academic.student.StudentEntity;
 
 /**
  * Author:  Admir Memic

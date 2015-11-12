@@ -1,4 +1,4 @@
-package ba.beslic.presentation.data.user.student;
+package ba.beslic.presentation.data.academic.student;
 
 import ba.beslic.presentation.data.PresentationData;
 

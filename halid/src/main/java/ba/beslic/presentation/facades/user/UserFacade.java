@@ -1,6 +1,6 @@
 package ba.beslic.presentation.facades.user;
 
-import ba.beslic.presentation.data.user.student.StudentData;
+import ba.beslic.presentation.data.academic.student.StudentData;
 
 /**
  * Author:  Admir Memic

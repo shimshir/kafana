@@ -1,7 +1,7 @@
-package ba.beslic.service.converters.user.student;
+package ba.beslic.service.converters.academic.student;
 
-import ba.beslic.persistence.entities.user.student.ScoreEntity;
-import ba.beslic.presentation.data.user.student.ScoreData;
+import ba.beslic.persistence.entities.academic.ScoreEntity;
+import ba.beslic.presentation.data.academic.student.ScoreData;
 import ba.beslic.service.converters.Converter;
 import org.springframework.stereotype.Component;
 
