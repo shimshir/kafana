@@ -10,8 +10,9 @@ import java.util.Collection;
  * Date:    11.11.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class AccountData implements PresentationData{
+public class AccountData implements PresentationData {
 	private String username;
+	private String password;
 	private Collection<RoleEnum> roles;
 
 	public Collection<RoleEnum> getRoles() {
@@ -29,5 +30,13 @@ public class AccountData implements PresentationData{
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

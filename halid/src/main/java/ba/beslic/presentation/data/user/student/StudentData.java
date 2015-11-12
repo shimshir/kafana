@@ -11,7 +11,16 @@ import java.util.List;
  */
 public class StudentData extends UserData {
 
+	private String cardCode;
 	private List<ScoreData> scores;
+
+	public String getCardCode() {
+		return cardCode;
+	}
+
+	public void setCardCode(String cardCode) {
+		this.cardCode = cardCode;
+	}
 
 	public List<ScoreData> getScores() {
 		return scores;

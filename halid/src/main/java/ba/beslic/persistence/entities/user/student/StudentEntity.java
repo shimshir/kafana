@@ -12,6 +12,9 @@ import java.util.List;
  */
 @Entity(name = "Student")
 public class StudentEntity extends UserEntity {
+
+	@Column(name = "card_code")
+	private String cardCode;
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "student_2_score",
@@ -26,5 +29,13 @@ public class StudentEntity extends UserEntity {
 
 	public void setScores(List<ScoreEntity> scores) {
 		this.scores = scores;
+	}
+
+	public String getCardCode() {
+		return cardCode;
+	}
+
+	public void setCardCode(String cardCode) {
+		this.cardCode = cardCode;
 	}
 }

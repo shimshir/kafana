@@ -27,6 +27,7 @@ public class StudentConverter<SE extends StudentEntity, SD extends StudentData> 
 		if (entity == null)
 			return null;
 		data = super.convertToData(entity, data);
+		data.setCardCode(entity.getCardCode());
 		List<ScoreData> scores = entity.getScores().stream().map
 				  (scoreEntity -> scoreConverter.convertToData(scoreEntity, new ScoreData())).collect(Collectors.toList());
 		data.setScores(scores);
@@ -38,6 +39,7 @@ public class StudentConverter<SE extends StudentEntity, SD extends StudentData> 
 		if (data == null)
 			return null;
 		entity = super.convertToEntity(data, entity);
+		entity.setCardCode(data.getCardCode());
 		List<ScoreEntity> scores = data.getScores().stream().map
 				(scoreData -> scoreConverter.convertToEntity(scoreData, new ScoreEntity())).collect(Collectors.toList());
 		entity.setScores(scores);
