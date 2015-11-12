@@ -54,6 +54,6 @@ public class NavigationServiceImpl implements NavigationService
 
 	@Override
 	public void save(IdentifiableEntity entity) {
-		navigationDao.save(entity);
+		navigationDao.create(entity);
 	}
 }

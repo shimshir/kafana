@@ -1,6 +1,8 @@
 package ba.beslic.service.converters.user;
 
+import ba.beslic.persistence.entities.user.AccountEntity;
 import ba.beslic.persistence.entities.user.UserEntity;
+import ba.beslic.presentation.data.user.AccountData;
 import ba.beslic.presentation.data.user.UserData;
 import ba.beslic.service.converters.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +14,25 @@ import org.springframework.stereotype.Component;
  * E-Mail:  admir.memic@dmc.de
  */
 @Component("userConverter")
-public class UserConverter implements Converter<UserEntity, UserData> {
+public class UserConverter<UE extends UserEntity, UD extends UserData> extends PersonConverter<UE, UD> {
 	@Autowired
 	private AccountConverter accountConverter;
 
 	@Override
-	public UserData convertToData(UserEntity entity) {
-		UserData data = new UserData();
-		data.setFirstName(entity.getFirstName());
-		data.setLastName(entity.getLastName());
-		data.setAccount(accountConverter.convertToData(entity.getAccount()));
+	public UD convertToData(UE entity, UD data) {
+		if (entity == null)
+			return null;
+		data = super.convertToData(entity, data);
+		data.setAccount(accountConverter.convertToData(entity.getAccount(), new AccountData()));
 		return data;
 	}
 
 	@Override
-	public UserEntity convertToEntity(UserData data) {
-		return null;
+	public UE convertToEntity(UD data, UE entity) {
+		if (data == null)
+			return null;
+		entity = super.convertToEntity(data, entity);
+		entity.setAccount(accountConverter.convertToEntity(data.getAccount(), new AccountEntity()));
+		return entity;
 	}
 }

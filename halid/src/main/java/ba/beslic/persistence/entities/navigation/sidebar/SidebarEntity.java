@@ -6,13 +6,8 @@ import ba.beslic.persistence.entities.navigation.NavLinkEntity;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.FetchProfile;
 import org.hibernate.annotations.FetchProfiles;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 import java.util.Set;
 
 
@@ -31,6 +26,7 @@ public class SidebarEntity extends IdentifiableEntity
 			name = "sidebar_2_nav_link",
 			joinColumns = @JoinColumn(name = "sidebar_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "nav_link_id", referencedColumnName = "id"))
+	@OrderBy("display_priority")
 	private Set<NavLinkEntity> links;
 
 	public String getPath()

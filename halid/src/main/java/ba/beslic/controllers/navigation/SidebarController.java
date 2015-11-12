@@ -23,7 +23,7 @@ public class SidebarController {
 		return null;
 	}
 
-	@RequestMapping(value = "/{encodedPath}")
+	@RequestMapping(path = "/{encodedPath}")
 	public SidebarData getSidebarByPath(@PathVariable String encodedPath) {
 		return navigationFacade.getSidebarByEncPath(encodedPath);
 	}

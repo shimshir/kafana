@@ -21,27 +21,23 @@ import java.util.stream.Collectors;
 public class NavLinkConverter implements Converter<NavLinkEntity, NavLinkData>
 {
 	@Override
-	public NavLinkData convertToData(NavLinkEntity entity)
+	public NavLinkData convertToData(NavLinkEntity entity, NavLinkData data)
 	{
-		NavLinkData data = new NavLinkData();
 		data.setUrl(entity.getUrl());
 		data.setName(entity.getName());
-		List<NavLinkEntity> sortedEntityChildLinks = new ArrayList<>();
-		sortedEntityChildLinks.addAll(entity.getChildLinks());
-		Collections.sort(sortedEntityChildLinks,
-				(childLink1, childLink2) -> childLink1.getDisplayPriority() - childLink2.getDisplayPriority());
-		List<NavLinkData> dataChildLinks = sortedEntityChildLinks.stream().map(this::convertToData).collect(Collectors.toList());
+		List<NavLinkData> dataChildLinks = entity.getChildLinks().stream().map
+				(linkEntity -> convertToData(linkEntity, new NavLinkData())).collect(Collectors.toList());
 		data.setChildLinks(dataChildLinks);
 		return data;
 	}
 
 	@Override
-	public NavLinkEntity convertToEntity(NavLinkData data)
+	public NavLinkEntity convertToEntity(NavLinkData data, NavLinkEntity entity)
 	{
-		NavLinkEntity entity = new NavLinkEntity();
 		entity.setUrl(data.getUrl());
 		entity.setName(data.getName());
-		Set<NavLinkEntity> entityChildLinks = data.getChildLinks().stream().map(this::convertToEntity).collect(Collectors.toSet());
+		List<NavLinkEntity> entityChildLinks = data.getChildLinks().stream().map
+				(linkData -> convertToEntity(linkData, new NavLinkEntity())).collect(Collectors.toList());
 		entity.setChildLinks(entityChildLinks);
 		return entity;
 	}

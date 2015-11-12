@@ -1,6 +1,8 @@
 package ba.beslic.service.converters.user;
 
+import ba.beslic.persistence.entities.user.UserEntity;
 import ba.beslic.persistence.entities.user.UserSessionEntity;
+import ba.beslic.presentation.data.user.UserData;
 import ba.beslic.presentation.data.user.UserSessionData;
 import ba.beslic.service.converters.Converter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +16,17 @@ import org.springframework.stereotype.Component;
 @Component("userSessionConverter")
 public class UserSessionConverter implements Converter<UserSessionEntity, UserSessionData> {
 	@Autowired
-	private UserConverter userConverter;
+	private UserConverter<UserEntity, UserData> userConverter;
 
 	@Override
-	public UserSessionData convertToData(UserSessionEntity entity) {
-		UserSessionData data = new UserSessionData();
+	public UserSessionData convertToData(UserSessionEntity entity, UserSessionData data) {
 		data.setActive(entity.isActive());
-		data.setUser(userConverter.convertToData(entity.getUser()));
+		data.setUser(userConverter.convertToData(entity.getUser(), new UserData()));
 		return data;
 	}
 
 	@Override
-	public UserSessionEntity convertToEntity(UserSessionData data) {
+	public UserSessionEntity convertToEntity(UserSessionData data, UserSessionEntity entity) {
 		return null;
 	}
 }

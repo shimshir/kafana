@@ -49,7 +49,7 @@ public class DaoImpl implements Dao
 	}
 
 	@Override
-	public void save(IdentifiableEntity entity) {
+	public void create(IdentifiableEntity entity) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(entity);
 	}

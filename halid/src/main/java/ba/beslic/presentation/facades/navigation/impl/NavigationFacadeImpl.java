@@ -34,7 +34,7 @@ public class NavigationFacadeImpl implements NavigationFacade {
 				break;
 			decodedPath = decodedPath.substring(0, decodedPath.lastIndexOf("/"));
 		}
-		SidebarData sidebarData = sidebarConverter.convertToData(sidebarEntity);
+		SidebarData sidebarData = sidebarConverter.convertToData(sidebarEntity, new SidebarData());
 		resolveItemIdsInLinkPaths(sidebarData, encodedPath.replace("~", "/"));
 		return sidebarData;
 	}

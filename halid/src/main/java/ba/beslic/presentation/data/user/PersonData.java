@@ -7,7 +7,7 @@ import ba.beslic.presentation.data.PresentationData;
  * Date:    11.11.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class PersonData implements PresentationData{
+public class PersonData implements PresentationData {
 	private String firstName;
 	private String lastName;
 

@@ -1,9 +1,9 @@
-package ba.beslic.persistence.entities.user;
+package ba.beslic.persistence.entities.user.student;
 
-import ba.beslic.persistence.entities.ScoreEntity;
+import ba.beslic.persistence.entities.user.UserEntity;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Author:  Admir Memic
@@ -17,14 +17,14 @@ public class StudentEntity extends UserEntity {
 			name = "student_2_score",
 			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "score_id", referencedColumnName = "id"))
-	private Set<ScoreEntity> scores;
+	private List<ScoreEntity> scores;
 
 
-	public Set<ScoreEntity> getScores() {
+	public List<ScoreEntity> getScores() {
 		return scores;
 	}
 
-	public void setScores(Set<ScoreEntity> scores) {
+	public void setScores(List<ScoreEntity> scores) {
 		this.scores = scores;
 	}
 }

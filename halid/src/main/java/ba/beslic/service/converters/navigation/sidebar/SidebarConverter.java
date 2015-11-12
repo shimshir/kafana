@@ -27,14 +27,11 @@ public class SidebarConverter implements Converter<SidebarEntity, SidebarData> {
 	private NavLinkConverter navLinkConverter;
 
 	@Override
-	public SidebarData convertToData(SidebarEntity entity) {
+	public SidebarData convertToData(SidebarEntity entity, SidebarData data) {
 		if (entity != null) {
-			SidebarData data = new SidebarData();
 			data.setPath(entity.getPath());
-			List<NavLinkEntity> sortedEntityLinks = new ArrayList<>();
-			sortedEntityLinks.addAll(entity.getLinks());
-			Collections.sort(sortedEntityLinks, (link1, link2) -> link1.getDisplayPriority() - link2.getDisplayPriority());
-			List<NavLinkData> dataLinks = sortedEntityLinks.stream().map(navLinkConverter::convertToData).collect(Collectors.toList());
+			List<NavLinkData> dataLinks = entity.getLinks().stream().map(linkEntity -> navLinkConverter.convertToData
+					(linkEntity, new NavLinkData())).collect(Collectors.toList());
 			data.setLinks(dataLinks);
 			return data;
 		} else {
@@ -43,10 +40,10 @@ public class SidebarConverter implements Converter<SidebarEntity, SidebarData> {
 	}
 
 	@Override
-	public SidebarEntity convertToEntity(SidebarData data) {
-		SidebarEntity entity = new SidebarEntity();
+	public SidebarEntity convertToEntity(SidebarData data, SidebarEntity entity) {
 		entity.setPath(data.getPath());
-		Set<NavLinkEntity> entityLinks = data.getLinks().stream().map(navLinkConverter::convertToEntity).collect(Collectors.toSet());
+		Set<NavLinkEntity> entityLinks = data.getLinks().stream().map(linkData -> navLinkConverter.convertToEntity
+				(linkData, new NavLinkEntity())).collect(Collectors.toSet());
 		entity.setLinks(entityLinks);
 		return entity;
 	}

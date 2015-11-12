@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 import java.util.Set;
 
 
@@ -34,7 +35,7 @@ public class NavLinkEntity extends IdentifiableEntity
 			name = "nav_link_2_nav_link",
 			joinColumns = @JoinColumn(name = "parent_link_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "child_link_id", referencedColumnName = "id"))
-	private Set<NavLinkEntity> childLinks;
+	private List<NavLinkEntity> childLinks;
 
 	public String getName()
 	{
@@ -66,12 +67,12 @@ public class NavLinkEntity extends IdentifiableEntity
 		this.displayPriority = displayPriority;
 	}
 
-	public Set<NavLinkEntity> getChildLinks()
+	public List<NavLinkEntity> getChildLinks()
 	{
 		return childLinks;
 	}
 
-	public void setChildLinks(Set<NavLinkEntity> childLinks)
+	public void setChildLinks(List<NavLinkEntity> childLinks)
 	{
 		this.childLinks = childLinks;
 	}
