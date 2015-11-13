@@ -1,7 +1,7 @@
 package ba.beslic.presentation.data.user;
 
 import ba.beslic.persistence.entities.user.RoleEnum;
-import ba.beslic.presentation.data.PresentationData;
+import ba.beslic.presentation.data.IdentifiableData;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
  * Date:    11.11.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class AccountData implements PresentationData {
+public class AccountData extends IdentifiableData {
 	private String username;
 	private String password;
 	private Collection<RoleEnum> roles;

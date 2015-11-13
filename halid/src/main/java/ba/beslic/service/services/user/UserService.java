@@ -11,7 +11,7 @@ import ba.beslic.persistence.entities.academic.student.StudentEntity;
 public interface UserService {
 	UserEntity getUserById(int id);
 
-	void createStudent(StudentEntity studentEntity);
+	StudentEntity createStudent(StudentEntity studentEntity);
 
 	StudentEntity getStudentById(int id);
 }

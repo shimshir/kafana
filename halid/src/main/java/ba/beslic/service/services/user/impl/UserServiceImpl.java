@@ -23,8 +23,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void createStudent(StudentEntity studentEntity) {
+	public StudentEntity createStudent(StudentEntity studentEntity) {
 		userDao.create(studentEntity);
+		return studentEntity;
 	}
 
 	@Override

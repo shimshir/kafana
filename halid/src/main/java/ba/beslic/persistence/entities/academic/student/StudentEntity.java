@@ -23,7 +23,7 @@ public class StudentEntity extends UserEntity {
 			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "score_id", referencedColumnName = "id"))
 	private List<ScoreEntity> scores;
-	@ManyToMany(mappedBy = "students")
+	@ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
 	private List<CourseEntity> courses;
 
 	public List<ScoreEntity> getScores() {

@@ -1,13 +1,13 @@
 package ba.beslic.presentation.data.academic.student;
 
-import ba.beslic.presentation.data.PresentationData;
+import ba.beslic.presentation.data.IdentifiableData;
 
 /**
  * Author:  Admir Memic
  * Date:    12.11.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class ScoreData implements PresentationData {
+public class ScoreData extends IdentifiableData {
 
 	private String code;
 	private String name;

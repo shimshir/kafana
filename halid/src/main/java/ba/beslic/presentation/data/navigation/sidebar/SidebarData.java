@@ -1,6 +1,6 @@
 package ba.beslic.presentation.data.navigation.sidebar;
 
-import ba.beslic.presentation.data.PresentationData;
+import ba.beslic.presentation.data.IdentifiableData;
 import ba.beslic.presentation.data.navigation.NavLinkData;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * Date:    17.09.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class SidebarData implements PresentationData
+public class SidebarData extends IdentifiableData
 {
 	private String path;
 	private List<NavLinkData> links;

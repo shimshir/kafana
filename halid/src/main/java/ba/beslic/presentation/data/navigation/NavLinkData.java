@@ -1,6 +1,6 @@
 package ba.beslic.presentation.data.navigation;
 
-import ba.beslic.presentation.data.PresentationData;
+import ba.beslic.presentation.data.IdentifiableData;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * Date:    17.09.2015
  * E-Mail:  admir.memic@dmc.de
  */
-public class NavLinkData implements PresentationData
+public class NavLinkData extends IdentifiableData
 {
 	private String name;
 	private String url;

@@ -2,7 +2,7 @@ package ba.beslic.service.converters.academic.student;
 
 import ba.beslic.persistence.entities.academic.ScoreEntity;
 import ba.beslic.presentation.data.academic.student.ScoreData;
-import ba.beslic.service.converters.Converter;
+import ba.beslic.service.converters.IdentifiableConverter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,9 +11,12 @@ import org.springframework.stereotype.Component;
  * E-Mail:  admir.memic@dmc.de
  */
 @Component("scoreConverter")
-public class ScoreConverter implements Converter<ScoreEntity, ScoreData> {
+public class ScoreConverter extends IdentifiableConverter<ScoreEntity, ScoreData> {
 	@Override
 	public ScoreData convertToData(ScoreEntity entity, ScoreData data) {
+		if (entity == null)
+			return null;
+		super.convertToData(entity, data);
 		data.setCode(entity.getCode());
 		data.setName(entity.getName());
 		data.setValue(entity.getValue());
@@ -22,6 +25,8 @@ public class ScoreConverter implements Converter<ScoreEntity, ScoreData> {
 
 	@Override
 	public ScoreEntity convertToEntity(ScoreData data, ScoreEntity entity) {
+		if (data == null)
+			return null;
 		entity.setCode(data.getCode());
 		entity.setName(data.getName());
 		entity.setValue(data.getValue());

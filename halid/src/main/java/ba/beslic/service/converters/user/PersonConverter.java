@@ -2,7 +2,7 @@ package ba.beslic.service.converters.user;
 
 import ba.beslic.persistence.entities.user.PersonEntity;
 import ba.beslic.presentation.data.user.PersonData;
-import ba.beslic.service.converters.Converter;
+import ba.beslic.service.converters.IdentifiableConverter;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,11 +11,12 @@ import org.springframework.stereotype.Component;
  * E-Mail:  admir.memic@dmc.de
  */
 @Component("personConverter")
-public class PersonConverter<PE extends PersonEntity, PD extends PersonData> implements Converter<PE, PD> {
+public class PersonConverter<PE extends PersonEntity, PD extends PersonData> extends IdentifiableConverter<PE, PD> {
 	@Override
 	public PD convertToData(PE entity, PD data) {
 		if (entity == null)
 			return null;
+		super.convertToData(entity, data);
 		data.setFirstName(entity.getFirstName());
 		data.setLastName(entity.getLastName());
 		return data;

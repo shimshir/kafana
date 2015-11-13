@@ -8,6 +8,6 @@ import ba.beslic.presentation.data.academic.student.StudentData;
  * E-Mail:  admir.memic@dmc.de
  */
 public interface UserFacade {
-	void createStudent(StudentData studentData);
+	StudentData createStudent(StudentData studentData);
 	StudentData getStudentById(int id);
 }

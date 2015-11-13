@@ -1,4 +1,4 @@
-package ba.beslic.controllers.user.student;
+package ba.beslic.controllers.academic.student;
 
 import ba.beslic.presentation.data.academic.student.StudentData;
 import ba.beslic.presentation.facades.user.UserFacade;
@@ -20,9 +20,7 @@ public class StudentController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<StudentData> createStudent(@RequestBody StudentData student) {
-
-		userFacade.createStudent(student);
-		return ResponseEntity.ok(student);
+		return ResponseEntity.ok(userFacade.createStudent(student));
 	}
 
 	@RequestMapping(path= "/{id}", method = RequestMethod.GET)

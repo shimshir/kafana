@@ -3,6 +3,7 @@ package ba.beslic.presentation.facades.user.impl;
 import ba.beslic.persistence.entities.academic.student.StudentEntity;
 import ba.beslic.presentation.data.academic.student.StudentData;
 import ba.beslic.presentation.facades.user.UserFacade;
+import ba.beslic.service.converters.academic.student.NewStudentConverter;
 import ba.beslic.service.converters.academic.student.StudentConverter;
 import ba.beslic.service.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,17 +20,23 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserFacadeImpl implements UserFacade {
 
 	@Autowired
-	private StudentConverter studentConverter;
+	private NewStudentConverter studentConverter;
 	@Autowired
 	private UserService userService;
 
 	@Override
-	public void createStudent(StudentData studentData) {
-		userService.createStudent(studentConverter.convertToEntity(studentData, new StudentEntity()));
+	public StudentData createStudent(StudentData studentData) {
+		// Convert to Entity object
+		StudentEntity studentEntity = studentConverter.convertToEntity(studentData, new StudentEntity());
+		// Save it to the DB, gets mutated
+		userService.createStudent(studentEntity);
+		// Create and return newly populated Data object
+		return studentConverter.convertToData(studentEntity, new StudentData());
 	}
 
 	@Override
 	public StudentData getStudentById(int id) {
-		return studentConverter.convertToData(userService.getStudentById(id), new StudentData());
+		StudentEntity studentEntity = userService.getStudentById(id);
+		return studentConverter.convertToData(studentEntity, new StudentData());
 	}
 }

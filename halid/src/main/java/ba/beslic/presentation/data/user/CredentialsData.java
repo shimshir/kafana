@@ -1,13 +1,13 @@
 package ba.beslic.presentation.data.user;
 
-import ba.beslic.presentation.data.PresentationData;
+import ba.beslic.presentation.data.IdentifiableData;
 
 /**
  * Author:  Admir Memic
  * Date:    19.10.15
  * E-Mail:  admir.memic@dmc.de
  */
-public class CredentialsData implements PresentationData {
+public class CredentialsData extends IdentifiableData {
 	private String username;
 	private String password;
 

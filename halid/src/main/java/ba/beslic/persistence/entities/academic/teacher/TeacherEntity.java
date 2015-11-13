@@ -3,6 +3,7 @@ package ba.beslic.persistence.entities.academic.teacher;
 import ba.beslic.persistence.entities.academic.CourseEntity;
 import ba.beslic.persistence.entities.user.UserEntity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -17,7 +18,7 @@ import java.util.List;
 public class TeacherEntity extends UserEntity {
 	@Column(name = "title")
 	private String title;
-	@ManyToMany(mappedBy = "teachers")
+	@ManyToMany(mappedBy = "teachers", cascade = CascadeType.ALL)
 	private List<CourseEntity> courses;
 
 	public String getTitle() {
