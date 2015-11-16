@@ -1,13 +1,11 @@
 package ba.beslic.presentation.data.academic.student;
 
-import ba.beslic.presentation.data.IdentifiableData;
 import ba.beslic.presentation.data.academic.CourseData;
 import ba.beslic.presentation.data.user.UserData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Author:  Admir Memic

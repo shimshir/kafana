@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.stream.Collectors;
-
 /**
  * Author:  Admir Memic
  * Date:    11.11.2015

@@ -1,12 +1,10 @@
 package ba.beslic.persistence.entities.academic;
 
 import ba.beslic.persistence.entities.IdentifiableEntity;
-
-import javax.persistence.*;
-
 import ba.beslic.persistence.entities.academic.student.StudentEntity;
 import ba.beslic.persistence.entities.academic.teacher.TeacherEntity;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**

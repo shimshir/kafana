@@ -1,9 +1,6 @@
 package ba.beslic.persistence.entities.navigation;
 
 import ba.beslic.persistence.entities.IdentifiableEntity;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.FetchProfile;
-import org.hibernate.annotations.FetchProfiles;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +10,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
-import java.util.Set;
 
 
 /**

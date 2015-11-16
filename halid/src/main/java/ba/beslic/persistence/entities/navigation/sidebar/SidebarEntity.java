@@ -3,9 +3,6 @@ package ba.beslic.persistence.entities.navigation.sidebar;
 
 import ba.beslic.persistence.entities.IdentifiableEntity;
 import ba.beslic.persistence.entities.navigation.NavLinkEntity;
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.FetchProfile;
-import org.hibernate.annotations.FetchProfiles;
 
 import javax.persistence.*;
 import java.util.Set;
