@@ -15,9 +15,15 @@ import org.springframework.stereotype.Service;
 public class AcademicServiceImpl implements AcademicService {
 	@Autowired
 	private AcademicDao academicDao;
+
 	@Override
 	public CourseEntity createCourse(CourseEntity courseEntity) {
 		academicDao.create(courseEntity);
 		return courseEntity;
+	}
+
+	@Override
+	public CourseEntity getCourseById(int id) {
+		return academicDao.getById(CourseEntity.class, id);
 	}
 }

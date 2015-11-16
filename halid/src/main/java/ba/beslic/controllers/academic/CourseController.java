@@ -1,13 +1,11 @@
 package ba.beslic.controllers.academic;
 
 import ba.beslic.presentation.data.academic.CourseData;
+import ba.beslic.presentation.data.academic.student.StudentData;
 import ba.beslic.presentation.facades.academic.AcademicFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Author:  Admir Memic
@@ -23,5 +21,10 @@ public class CourseController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<CourseData> createCourse(@RequestBody CourseData course) {
 		return ResponseEntity.ok(academicFacade.createCourse(course));
+	}
+
+	@RequestMapping(path= "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<CourseData> getCourseById(@PathVariable int id) {
+		return ResponseEntity.ok(academicFacade.getCourseById(id));
 	}
 }

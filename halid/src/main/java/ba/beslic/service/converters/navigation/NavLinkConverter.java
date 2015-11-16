@@ -36,6 +36,7 @@ public class NavLinkConverter extends IdentifiableConverter<NavLinkEntity, NavLi
 	{
 		if (data == null)
 			return null;
+		super.convertToEntity(data, entity);
 		entity.setUrl(data.getUrl());
 		entity.setName(data.getName());
 		List<NavLinkEntity> entityChildLinks = data.getChildLinks().stream().map

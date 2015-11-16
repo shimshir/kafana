@@ -10,15 +10,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class IdentifiableData
 {
-	private int id;
+	private Integer id;
 
 	@JsonProperty
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
 	@JsonIgnore
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 }

@@ -17,12 +17,16 @@ public class IdentifiableEntity
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	public IdentifiableEntity() {
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

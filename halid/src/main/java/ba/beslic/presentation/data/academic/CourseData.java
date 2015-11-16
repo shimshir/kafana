@@ -18,6 +18,7 @@ public class CourseData extends IdentifiableData {
 	private String code;
 	private String name;
 	private List<StudentData> students;
+	private List<Integer> studentIds;
 	private List<TeacherData> teachers;
 
 	public String getCode() {
@@ -47,7 +48,11 @@ public class CourseData extends IdentifiableData {
 	}
 
 	public List<Integer> getStudentIds() {
-		return students == null ? null : students.stream().map(IdentifiableData::getId).collect(Collectors.toList());
+		return studentIds;
+	}
+
+	public void setStudentIds(List<Integer> studentIds) {
+		this.studentIds = studentIds;
 	}
 
 	@JsonIgnore

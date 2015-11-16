@@ -28,4 +28,9 @@ public class AcademicFacadeImpl implements AcademicFacade {
 		academicService.createCourse(courseEntity);
 		return courseConverter.convertToData(courseEntity, new CourseData());
 	}
+
+	@Override
+	public CourseData getCourseById(int id) {
+		return courseConverter.convertToData(academicService.getCourseById(id), new CourseData());
+	}
 }

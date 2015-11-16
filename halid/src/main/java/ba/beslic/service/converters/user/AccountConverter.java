@@ -38,6 +38,7 @@ public class AccountConverter extends IdentifiableConverter<AccountEntity, Accou
 	public AccountEntity convertToEntity(AccountData data, AccountEntity entity) {
 		if (data == null)
 			return null;
+		super.convertToEntity(data, entity);
 		entity.setUsername(data.getUsername());
 		entity.setHashedPassword(passwordEncoder.encodePassword(data.getPassword(), data.getUsername()
 				+ "where luck miracles to happen, so that miljacka bridges carried away" + data.getPassword()));

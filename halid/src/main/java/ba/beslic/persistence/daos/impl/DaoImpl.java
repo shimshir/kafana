@@ -51,7 +51,7 @@ public class DaoImpl implements Dao
 	@Override
 	public void create(IdentifiableEntity entity) {
 		Session session = sessionFactory.getCurrentSession();
-		session.save(entity);
+		session.saveOrUpdate(entity);
 	}
 
 	@Override

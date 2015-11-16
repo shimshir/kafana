@@ -29,8 +29,8 @@ public class CourseEntity extends IdentifiableEntity {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "course_2_student",
-			joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
+			  joinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id"),
+			  inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
 	private List<StudentEntity> students;
 
 	public String getCode() {

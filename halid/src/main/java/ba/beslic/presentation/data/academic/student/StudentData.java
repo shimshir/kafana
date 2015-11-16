@@ -19,6 +19,7 @@ public class StudentData extends UserData {
 	private String cardCode;
 	private List<ScoreData> scores;
 	private List<CourseData> courses;
+	private List<Integer> courseIds;
 
 	public String getCardCode() {
 		return cardCode;
@@ -47,6 +48,10 @@ public class StudentData extends UserData {
 	}
 
 	public List<Integer> getCourseIds() {
-		return courses == null ? null : courses.stream().map(IdentifiableData::getId).collect(Collectors.toList());
+		return courseIds;
+	}
+
+	public void setCourseIds(List<Integer> courseIds) {
+		this.courseIds = courseIds;
 	}
 }

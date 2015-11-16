@@ -26,6 +26,7 @@ public class PersonConverter<PE extends PersonEntity, PD extends PersonData> ext
 	public PE convertToEntity(PD data, PE entity) {
 		if (data == null)
 			return null;
+		super.convertToEntity(data, entity);
 		entity.setFirstName(data.getFirstName());
 		entity.setLastName(data.getLastName());
 		return entity;

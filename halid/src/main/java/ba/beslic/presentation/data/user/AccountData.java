@@ -2,6 +2,8 @@ package ba.beslic.presentation.data.user;
 
 import ba.beslic.persistence.entities.user.RoleEnum;
 import ba.beslic.presentation.data.IdentifiableData;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Collection;
 
@@ -32,10 +34,12 @@ public class AccountData extends IdentifiableData {
 		this.username = username;
 	}
 
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty
 	public void setPassword(String password) {
 		this.password = password;
 	}

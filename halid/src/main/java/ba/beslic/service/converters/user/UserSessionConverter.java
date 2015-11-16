@@ -28,6 +28,11 @@ public class UserSessionConverter extends IdentifiableConverter<UserSessionEntit
 
 	@Override
 	public UserSessionEntity convertToEntity(UserSessionData data, UserSessionEntity entity) {
-		return null;
+		if (data == null)
+			return null;
+		super.convertToEntity(data, entity);
+		entity.setActive(data.isActive());
+		entity.setUser(userConverter.convertToEntity(data.getUser(), new UserEntity()));
+		return entity;
 	}
 }

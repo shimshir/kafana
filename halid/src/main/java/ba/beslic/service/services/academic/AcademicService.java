@@ -9,4 +9,5 @@ import ba.beslic.persistence.entities.academic.CourseEntity;
  */
 public interface AcademicService {
 	CourseEntity createCourse(CourseEntity courseEntity);
+	CourseEntity getCourseById(int id);
 }

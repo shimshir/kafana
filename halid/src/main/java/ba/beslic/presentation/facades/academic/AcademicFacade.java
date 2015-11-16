@@ -9,4 +9,6 @@ import ba.beslic.presentation.data.academic.CourseData;
  */
 public interface AcademicFacade {
 	CourseData createCourse(CourseData courseData);
+
+	CourseData getCourseById(int id);
 }

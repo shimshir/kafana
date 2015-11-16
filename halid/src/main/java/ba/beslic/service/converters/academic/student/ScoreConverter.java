@@ -27,6 +27,7 @@ public class ScoreConverter extends IdentifiableConverter<ScoreEntity, ScoreData
 	public ScoreEntity convertToEntity(ScoreData data, ScoreEntity entity) {
 		if (data == null)
 			return null;
+		super.convertToEntity(data, entity);
 		entity.setCode(data.getCode());
 		entity.setName(data.getName());
 		entity.setValue(data.getValue());

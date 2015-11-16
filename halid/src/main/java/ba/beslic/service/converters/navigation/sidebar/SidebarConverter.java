@@ -40,6 +40,7 @@ public class SidebarConverter extends IdentifiableConverter<SidebarEntity, Sideb
 	public SidebarEntity convertToEntity(SidebarData data, SidebarEntity entity) {
 		if (data == null)
 			return null;
+		super.convertToEntity(data, entity);
 		entity.setPath(data.getPath());
 		Set<NavLinkEntity> entityLinks = data.getLinks().stream().map(linkData -> navLinkConverter.convertToEntity
 				(linkData, new NavLinkEntity())).collect(Collectors.toSet());

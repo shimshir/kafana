@@ -15,5 +15,8 @@ public abstract class IdentifiableConverter<ENTITY extends IdentifiableEntity, D
 		data.setId(entity.getId());
 		return data;
 	}
-	public abstract ENTITY convertToEntity(DATA data, ENTITY entity);
+	public ENTITY convertToEntity(DATA data, ENTITY entity) {
+		entity.setId(data.getId());
+		return entity;
+	}
 }
