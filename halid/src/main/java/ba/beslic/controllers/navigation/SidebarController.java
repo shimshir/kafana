@@ -1,7 +1,7 @@
 package ba.beslic.controllers.navigation;
 
-import ba.beslic.presentation.data.navigation.sidebar.SidebarData;
-import ba.beslic.presentation.facades.navigation.NavigationFacade;
+import ba.beslic.models.presentation.navigation.sidebar.SidebarData;
+import ba.beslic.facades.navigation.NavigationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

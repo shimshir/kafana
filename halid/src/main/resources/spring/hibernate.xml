@@ -7,7 +7,7 @@
 	<bean id="sessionFactory"
 		  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dbcpDataSource"/>
-		<property name="packagesToScan" value="ba.beslic.persistence.entities"/>
+		<property name="packagesToScan" value="ba.beslic.models.persistence"/>
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>

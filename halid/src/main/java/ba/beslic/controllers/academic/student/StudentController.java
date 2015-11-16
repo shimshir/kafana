@@ -1,7 +1,7 @@
 package ba.beslic.controllers.academic.student;
 
-import ba.beslic.presentation.data.academic.student.StudentData;
-import ba.beslic.presentation.facades.user.UserFacade;
+import ba.beslic.models.presentation.academic.student.StudentData;
+import ba.beslic.facades.user.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
