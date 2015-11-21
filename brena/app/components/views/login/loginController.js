@@ -8,7 +8,8 @@ app.controller('loginController', function ($scope, $rootScope, AUTH_EVENTS, Aut
 		AuthService.login(credentials).then(function (user) {
 			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 			$scope.setCurrentUser(user);
-		}, function () {
+		}, function (error) {
+			console.log(error);
 			$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 		});
 	};

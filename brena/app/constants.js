@@ -6,10 +6,10 @@ app.constant('AUTH_EVENTS', {
 	notAuthenticated: 'auth-not-authenticated',
 	notAuthorized: 'auth-not-authorized'
 }).constant('USER_ROLES', {
-	all: 'student',
-	admin: 'admin',
-	staff: 'staff',
-	guest: 'guest'
+	student: 'STUDENT',
+	admin: 'ADMIN',
+	staff: 'STAFF',
+	guest: 'GUEST'
 }).constant('APP_CONSTANTS', {
 	apiEndpoint: 'http://localhost:5000/halid/api/v1'
 });

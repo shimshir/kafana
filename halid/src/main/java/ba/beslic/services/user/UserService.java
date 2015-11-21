@@ -1,6 +1,7 @@
 package ba.beslic.services.user;
 
 import ba.beslic.models.persistence.user.AccountEntity;
+import ba.beslic.models.persistence.user.UUIDTokenEntity;
 import ba.beslic.models.persistence.user.UserEntity;
 import ba.beslic.models.persistence.academic.student.StudentEntity;
 import ba.beslic.models.persistence.user.UserSessionEntity;
@@ -21,4 +22,8 @@ public interface UserService {
 	AccountEntity getAccountByUsername(String username);
 
 	UserSessionEntity createUserSession(UserEntity user);
+
+	UserSessionEntity getUserSessionByUUID(UUIDTokenEntity uuidToken);
+
+	UUIDTokenEntity getUUIDTokenById(String uuid);
 }

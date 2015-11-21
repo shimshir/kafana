@@ -1,10 +1,12 @@
 package ba.beslic.models.persistence.user;
 
 import ba.beslic.models.persistence.IdentifiableEntity;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * Author:  Admir Memic
@@ -16,6 +18,8 @@ import java.util.Date;
 public class UserSessionEntity extends IdentifiableEntity {
 	@OneToOne(cascade = CascadeType.ALL)
 	private UserEntity user;
+	@OneToOne(cascade = CascadeType.ALL)
+	private UUIDTokenEntity uuidToken;
 	@Column(name = "active")
 	private boolean active;
 	@Column(name = "created", nullable = false)
@@ -32,6 +36,14 @@ public class UserSessionEntity extends IdentifiableEntity {
 
 	public void setUser(UserEntity user) {
 		this.user = user;
+	}
+
+	public UUIDTokenEntity getUuidToken() {
+		return uuidToken;
+	}
+
+	public void setUuidToken(UUIDTokenEntity uuidToken) {
+		this.uuidToken = uuidToken;
 	}
 
 	public boolean isActive() {

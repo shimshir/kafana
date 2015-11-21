@@ -9,6 +9,7 @@ import ba.beslic.models.presentation.IdentifiableData;
  */
 public class UserSessionData extends IdentifiableData {
 	private UserData user;
+	private String uuid;
 	private boolean active;
 
 	public UserData getUser() {
@@ -17,6 +18,14 @@ public class UserSessionData extends IdentifiableData {
 
 	public void setUser(UserData user) {
 		this.user = user;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public boolean isActive() {

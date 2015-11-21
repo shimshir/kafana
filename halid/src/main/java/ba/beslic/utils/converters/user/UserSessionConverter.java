@@ -22,6 +22,7 @@ public class UserSessionConverter extends IdentifiableConverter<UserSessionEntit
 	public UserSessionData convertToData(UserSessionEntity entity, UserSessionData data) {
 		super.convertToData(entity, data);
 		data.setActive(entity.isActive());
+		data.setUuid(entity.getUuidToken().getId());
 		data.setUser(userConverter.convertToData(entity.getUser(), new UserData()));
 		return data;
 	}

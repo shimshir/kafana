@@ -14,4 +14,6 @@ public interface UserFacade {
 	StudentData getStudentById(Integer id);
 
 	UserSessionData createSession(CredentialsData credentials);
+
+	UserSessionData getUserSessionByUUID(String uuid);
 }

@@ -1,7 +1,5 @@
 package ba.beslic.daos;
 
-import ba.beslic.models.persistence.IdentifiableEntity;
-
 import java.util.List;
 import java.util.Map;
 
@@ -13,10 +11,10 @@ import java.util.Map;
  */
 public interface Dao
 {
-	<T extends IdentifiableEntity> T getById(Class<T> clazz, int id);
-	<T extends IdentifiableEntity> List<T> find(Class<T> clazz, Map<String, Object> params);
-	<T extends IdentifiableEntity> T findUnique(Class<T> clazz, Map<String, Object> params);
-	<T extends IdentifiableEntity> void create(T entity);
-	<T extends IdentifiableEntity> void update(T entity);
-	<T extends IdentifiableEntity> void delete(T entity);
+	<T> T getById(Class<T> clazz, int id);
+	<T> List<T> find(Class<T> clazz, Map<String, Object> params);
+	<T> T findUnique(Class<T> clazz, Map<String, Object> params);
+	<T> void create(T entity);
+	<T> void update(T entity);
+	<T> void delete(T entity);
 }

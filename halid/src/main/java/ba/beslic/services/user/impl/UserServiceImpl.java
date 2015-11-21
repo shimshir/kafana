@@ -2,10 +2,10 @@ package ba.beslic.services.user.impl;
 
 import ba.beslic.daos.user.UserDao;
 import ba.beslic.models.persistence.user.AccountEntity;
+import ba.beslic.models.persistence.user.UUIDTokenEntity;
 import ba.beslic.models.persistence.user.UserEntity;
 import ba.beslic.models.persistence.academic.student.StudentEntity;
 import ba.beslic.models.persistence.user.UserSessionEntity;
-import ba.beslic.models.presentation.user.UserSessionData;
 import ba.beslic.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,8 +50,23 @@ public class UserServiceImpl implements UserService {
 	public UserSessionEntity createUserSession(UserEntity user) {
 		UserSessionEntity userSessionEntity = new UserSessionEntity();
 		userSessionEntity.setUser(user);
+		userSessionEntity.setUuidToken(new UUIDTokenEntity());
 		userSessionEntity.setActive(true);
 		userDao.create(userSessionEntity);
 		return userSessionEntity;
+	}
+
+	@Override
+	public UserSessionEntity getUserSessionByUUID(UUIDTokenEntity uuidToken) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("uuidToken", uuidToken);
+		return userDao.findUnique(UserSessionEntity.class, params);
+	}
+
+	@Override
+	public UUIDTokenEntity getUUIDTokenById(String uuid) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", uuid);
+		return userDao.findUnique(UUIDTokenEntity.class, params);
 	}
 }

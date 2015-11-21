@@ -2,6 +2,8 @@ package ba.beslic.facades.user.impl;
 
 import ba.beslic.models.persistence.academic.student.StudentEntity;
 import ba.beslic.models.persistence.user.AccountEntity;
+import ba.beslic.models.persistence.user.UUIDTokenEntity;
+import ba.beslic.models.persistence.user.UserSessionEntity;
 import ba.beslic.models.presentation.academic.student.StudentData;
 import ba.beslic.models.presentation.user.CredentialsData;
 import ba.beslic.models.presentation.user.UserSessionData;
@@ -11,7 +13,7 @@ import ba.beslic.services.user.UserService;
 import ba.beslic.utils.converters.user.UserSessionConverter;
 import ba.beslic.utils.security.PasswordEncoderWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,6 +60,13 @@ public class UserFacadeImpl implements UserFacade {
 			return userSessionConverter.convertToData(
 					userService.createUserSession(accountEntity.getUser()), new UserSessionData());
 		} else
-			throw new UsernameNotFoundException("Username: " + credentials.getUsername() + " does not exist!");
+			throw new AuthenticationCredentialsNotFoundException("Wrong login data!");
+	}
+
+	@Override
+	public UserSessionData getUserSessionByUUID(String uuid) {
+		UUIDTokenEntity uuidTokenEntity = userService.getUUIDTokenById(uuid);
+		UserSessionEntity userSessionEntity = userService.getUserSessionByUUID(uuidTokenEntity);
+		return userSessionEntity == null ? null : userSessionConverter.convertToData(userSessionEntity, new UserSessionData());
 	}
 }

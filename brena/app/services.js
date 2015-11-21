@@ -8,7 +8,7 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 	var authService = {};
 
 	authService.login = function (credentials) {
-		return $http.post(APP_CONSTANTS.apiEndpoint + '/login', credentials)
+		return $http.post(APP_CONSTANTS.apiEndpoint + '/user/login', credentials)
 					.then(function (res) {
 						var userSession = res.data;
 						Session.create(userSession.id, userSession.user.id, userSession.user.account.roles);
@@ -20,11 +20,18 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 		return !!Session.userId;
 	};
 
-	authService.isAuthorized = function (authorizedRoles) {
-		if (!angular.isArray(authorizedRoles)) {
-			authorizedRoles = [authorizedRoles];
-		}
-		return (authService.isAuthenticated() && authorizedRoles.indexOf(Session.userRole) !== -1);
+	authService.isAuthorized = function (requiredRoles) {
+		if (Session.userRoles === undefined)
+			return false;
+
+		if (!angular.isArray(requiredRoles))
+			requiredRoles = [requiredRoles];
+
+		var hasRequiredRoles = Session.userRoles.filter(function(userRole) {
+			return requiredRoles.indexOf(userRole) > -1;
+		}).length == requiredRoles.length;
+
+		return authService.isAuthenticated() && hasRequiredRoles;
 	};
 
 	return authService;
