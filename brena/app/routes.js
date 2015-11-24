@@ -1,4 +1,4 @@
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, USER_ROLES) {
 
 	$urlRouterProvider.otherwise(function($injector, $location){
 		var state = $injector.get('$state');
@@ -27,13 +27,28 @@ app.config(function($stateProvider, $urlRouterProvider) {
 			url: '/login',
 			templateUrl: 'components/views/login/loginView.html'
 		})
-		.state('academic-students', {
-			url: '/academic/students',
-			templateUrl: 'components/views/academic/student/studentListView.html'
-		})
 		.state('academic-courses', {
 			url: '/academic/courses',
 			templateUrl: 'components/views/academic/course/courseListView.html'
+		})
+		.state('academic-exams', {
+			url: '/academic/exams',
+			templateUrl: 'shared/404.html'
+		})
+		.state('academic-staffs', {
+			url: '/academic/staffs',
+			templateUrl: 'shared/404.html'
+		})
+		.state('academic-students', {
+			url: '/academic/students',
+			templateUrl: 'components/views/academic/student/studentListView.html',
+			data: {
+				authorizedRoles: [USER_ROLES.student]
+			}
+		})
+		.state('academic-groups', {
+			url: '/academic/groups',
+			templateUrl: 'shared/404.html'
 		})
 		.state('404', {
 			templateUrl: 'shared/404.html'

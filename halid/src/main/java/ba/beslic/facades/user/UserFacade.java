@@ -4,6 +4,8 @@ import ba.beslic.models.presentation.academic.student.StudentData;
 import ba.beslic.models.presentation.user.CredentialsData;
 import ba.beslic.models.presentation.user.UserSessionData;
 
+import java.util.List;
+
 /**
  * Author:  Admir Memic
  * Date:    12.11.2015
@@ -12,6 +14,7 @@ import ba.beslic.models.presentation.user.UserSessionData;
 public interface UserFacade {
 	StudentData createStudent(StudentData studentData);
 	StudentData getStudentById(Integer id);
+	List<StudentData> getAllStudents();
 
 	UserSessionData createSession(CredentialsData credentials);
 

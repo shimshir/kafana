@@ -3,12 +3,12 @@
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th>First Name</th><th>Last Name</th>
+			<th>Username</th><th>First Name</th><th>Last Name</th><th>Card code</th>
 		</tr>
 		</thead>
 		<tbody>
 		<tr ng-repeat="student in students">
-			<td>{{ student.firstName }}</td><td>{{ student.lastName }}</td>
+			<td>{{ student.account.username }}</td><td>{{ student.firstName }}</td><td>{{ student.lastName }}</td><td>{{ student.cardCode }}</td>
 		</tr>
 		</tbody>
 	</table>

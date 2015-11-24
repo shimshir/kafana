@@ -10,7 +10,7 @@ app.controller('sideNavbarController', ['$scope', '$location', 'Api',
 
 		$scope.sidebar = Api.Sidebar.get({path: $location.path().replace(/\//g,'~')});
 
-		$scope.$on('$locationChangeStart', function() {
+		$scope.$on('$locationChangeSuccess', function() {
 			Api.Sidebar.get({path: $location.path().replace(/\//g,'~')},
 				function (response) {
 					if (response.path != $scope.sidebar.path)

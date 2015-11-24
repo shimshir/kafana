@@ -7,6 +7,8 @@ import ba.beslic.models.persistence.academic.student.StudentEntity;
 import ba.beslic.models.persistence.user.UserSessionEntity;
 import ba.beslic.models.presentation.user.UserSessionData;
 
+import java.util.List;
+
 /**
  * Author:  Admir Memic
  * Date:    11.11.2015
@@ -26,4 +28,6 @@ public interface UserService {
 	UserSessionEntity getUserSessionByUUID(UUIDTokenEntity uuidToken);
 
 	UUIDTokenEntity getUUIDTokenById(String uuid);
+
+	List<StudentEntity> getAllStudents();
 }

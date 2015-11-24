@@ -1,6 +1,6 @@
 app.factory('Api', function ($resource, APP_CONSTANTS) {
 		return {
-			Student: $resource(APP_CONSTANTS.apiEndpoint + '/students/:id'),
+			Student: $resource(APP_CONSTANTS.apiEndpoint + '/student/:id'),
 			Sidebar: $resource(APP_CONSTANTS.apiEndpoint + '/sidebar/:path')
 		};
 	}

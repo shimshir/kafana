@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -68,5 +69,10 @@ public class UserServiceImpl implements UserService {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", uuid);
 		return userDao.findUnique(UUIDTokenEntity.class, params);
+	}
+
+	@Override
+	public List<StudentEntity> getAllStudents() {
+		return userDao.find(StudentEntity.class, new HashMap<>());
 	}
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Author:  Admir Memic
  * Date:    12.11.2015
@@ -26,5 +28,10 @@ public class StudentController {
 	@RequestMapping(path= "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<StudentData> getStudentById(@PathVariable int id) {
 		return ResponseEntity.ok(userFacade.getStudentById(id));
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<StudentData>> getAllStudents() {
+		return ResponseEntity.ok(userFacade.getAllStudents());
 	}
 }

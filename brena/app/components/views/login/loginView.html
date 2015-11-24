@@ -1,4 +1,4 @@
-<div ng-show="!isAuthenticated()">
+<div id="loginFormContainer" ng-show="!isAuthenticated()">
 	<iframe src="sink.html" name="sink"
 			style="display:none"></iframe>
 
@@ -7,14 +7,17 @@
 		  ng-controller="loginController"
 		  ng-submit="login(credentials)"
 		  novalidate>
-
-		<label for="username">Username:</label>
-		<input type="text" id="username" ng-model="credentials.username">
-		<br>
-		<label for="password">Password:</label>
-		<input type="password" id="password" ng-model="credentials.password">
-		<br>
-		<button type="submit">Login</button>
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input ng-model="credentials.username" type="text" id="username" name="username" class="form-control" placeholder="Enter username" autofocus="true" autocomplete="off" required>
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input ng-model="credentials.password" type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-primary">Log In</button>
+		</div>
 	</form>
 </div>
 <div ng-show="isAuthenticated()">

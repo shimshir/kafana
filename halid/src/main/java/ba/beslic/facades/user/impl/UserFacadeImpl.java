@@ -17,6 +17,9 @@ import org.springframework.security.authentication.AuthenticationCredentialsNotF
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Author:  Admir Memic
  * Date:    12.11.2015
@@ -49,6 +52,13 @@ public class UserFacadeImpl implements UserFacade {
 	public StudentData getStudentById(Integer id) {
 		StudentEntity studentEntity = userService.getStudentById(id);
 		return studentConverter.convertToData(studentEntity, new StudentData());
+	}
+
+	@Override
+	public List<StudentData> getAllStudents() {
+		List<StudentEntity> studentEntities = userService.getAllStudents();
+		return studentEntities.stream().map(studentEntity ->
+				studentConverter.convertToData(studentEntity, new StudentData())).collect(Collectors.toList());
 	}
 
 	@Override
