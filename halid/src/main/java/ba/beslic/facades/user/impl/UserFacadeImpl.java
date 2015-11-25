@@ -5,11 +5,13 @@ import ba.beslic.models.persistence.user.AccountEntity;
 import ba.beslic.models.persistence.user.UUIDTokenEntity;
 import ba.beslic.models.persistence.user.UserSessionEntity;
 import ba.beslic.models.presentation.academic.student.StudentData;
+import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.CredentialsData;
 import ba.beslic.models.presentation.user.UserSessionData;
 import ba.beslic.facades.user.UserFacade;
 import ba.beslic.utils.converters.academic.student.StudentConverter;
 import ba.beslic.services.user.UserService;
+import ba.beslic.utils.converters.user.AccountConverter;
 import ba.beslic.utils.converters.user.UserSessionConverter;
 import ba.beslic.utils.security.PasswordEncoderWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,8 @@ public class UserFacadeImpl implements UserFacade {
 	private PasswordEncoderWrapper passwordEncoder;
 	@Autowired
 	private UserSessionConverter userSessionConverter;
+	@Autowired
+	private AccountConverter accountConverter;
 
 	@Override
 	public StudentData createStudent(StudentData studentData) {
@@ -78,5 +82,10 @@ public class UserFacadeImpl implements UserFacade {
 		UUIDTokenEntity uuidTokenEntity = userService.getUUIDTokenById(uuid);
 		UserSessionEntity userSessionEntity = userService.getUserSessionByUUID(uuidTokenEntity);
 		return userSessionEntity == null ? null : userSessionConverter.convertToData(userSessionEntity, new UserSessionData());
+	}
+
+	@Override
+	public AccountData getAccountById(Integer id) {
+		return accountConverter.convertToData(userService.getAccountById(id), new AccountData());
 	}
 }

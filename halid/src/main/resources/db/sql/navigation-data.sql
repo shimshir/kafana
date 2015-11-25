@@ -15,7 +15,7 @@ INSERT INTO nav_link (id, name, url, display_priority) VALUES (105, 'Discussions
 INSERT INTO nav_link (id, name, url, display_priority) VALUES (106, 'Calendar', '/home/calendar', 6);
 INSERT INTO nav_link (id, name, url, display_priority) VALUES (107, 'Messages', '/home/messages', 7);
 
-INSERT INTO nav_link (id, name, url, display_priority) VALUES (112, 'Programming', '/home/projects/programming', 1);
+INSERT INTO nav_link (id, name, url, display_priority, parent_id) VALUES (112, 'Programming', '/home/projects/programming', 1, 102);
 
 -- Home sidebar_2_nav_link relations --
 INSERT INTO sidebar_2_nav_link (sidebar_id, nav_link_id) VALUES (1, 101);
@@ -25,8 +25,6 @@ INSERT INTO sidebar_2_nav_link (sidebar_id, nav_link_id) VALUES (1, 104);
 INSERT INTO sidebar_2_nav_link (sidebar_id, nav_link_id) VALUES (1, 105);
 INSERT INTO sidebar_2_nav_link (sidebar_id, nav_link_id) VALUES (1, 106);
 INSERT INTO sidebar_2_nav_link (sidebar_id, nav_link_id) VALUES (1, 107);
-
-INSERT INTO nav_link_2_nav_link (parent_link_id, child_link_id) VALUES (102, 112);
 
 -- Academics Sidebar --
 INSERT INTO sidebar (id, path) VALUES (2, '/academic');

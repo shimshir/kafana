@@ -27,10 +27,7 @@ public class NavLinkEntity extends IdentifiableEntity
 	@Column(name = "display_priority")
 	private int displayPriority;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "nav_link_2_nav_link",
-			joinColumns = @JoinColumn(name = "parent_link_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "child_link_id", referencedColumnName = "id"))
+	@JoinColumn(name = "parent_id", referencedColumnName = "id")
 	private List<NavLinkEntity> childLinks;
 
 	public String getName()

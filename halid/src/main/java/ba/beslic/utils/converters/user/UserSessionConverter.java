@@ -2,6 +2,7 @@ package ba.beslic.utils.converters.user;
 
 import ba.beslic.models.persistence.user.UserEntity;
 import ba.beslic.models.persistence.user.UserSessionEntity;
+import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.UserData;
 import ba.beslic.models.presentation.user.UserSessionData;
 import ba.beslic.utils.converters.IdentifiableConverter;
@@ -17,6 +18,8 @@ import org.springframework.stereotype.Component;
 public class UserSessionConverter extends IdentifiableConverter<UserSessionEntity, UserSessionData> {
 	@Autowired
 	private UserConverter<UserEntity, UserData> userConverter;
+	@Autowired
+	private AccountConverter accountConverter;
 
 	@Override
 	public UserSessionData convertToData(UserSessionEntity entity, UserSessionData data) {
@@ -24,6 +27,7 @@ public class UserSessionConverter extends IdentifiableConverter<UserSessionEntit
 		data.setActive(entity.isActive());
 		data.setUuid(entity.getUuidToken().getId());
 		data.setUser(userConverter.convertToData(entity.getUser(), new UserData()));
+		data.setAccount(accountConverter.convertToData(entity.getUser().getAccount(), new AccountData()));
 		return data;
 	}
 

@@ -22,4 +22,6 @@ public interface NavigationService
 	List<NavLinkEntity> getNavLinksByName(String name);
 
 	void save(IdentifiableEntity entity);
+
+	SidebarEntity createSidebar(SidebarEntity sidebarEntity);
 }

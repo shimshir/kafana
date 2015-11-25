@@ -1,5 +1,6 @@
 package ba.beslic.services.user;
 
+import ba.beslic.models.persistence.academic.teacher.TeacherEntity;
 import ba.beslic.models.persistence.user.AccountEntity;
 import ba.beslic.models.persistence.user.UUIDTokenEntity;
 import ba.beslic.models.persistence.user.UserEntity;
@@ -30,4 +31,8 @@ public interface UserService {
 	UUIDTokenEntity getUUIDTokenById(String uuid);
 
 	List<StudentEntity> getAllStudents();
+
+	TeacherEntity getTeacherById(Integer id);
+
+	AccountEntity getAccountById(Integer id);
 }

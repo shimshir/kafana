@@ -1,6 +1,7 @@
 package ba.beslic.models.persistence.academic.student;
 
 import ba.beslic.models.persistence.academic.CourseEntity;
+import ba.beslic.models.persistence.academic.AcademicGroupEntity;
 import ba.beslic.models.persistence.academic.ScoreEntity;
 import ba.beslic.models.persistence.user.UserEntity;
 
@@ -18,13 +19,12 @@ public class StudentEntity extends UserEntity {
 	@Column(name = "card_code")
 	private String cardCode;
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "student_2_score",
-			joinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "score_id", referencedColumnName = "id"))
 	private List<ScoreEntity> scores;
 	@ManyToMany(mappedBy = "students", cascade = CascadeType.ALL)
 	private List<CourseEntity> courses;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "academic_group_id")
+	private AcademicGroupEntity academicGroup;
 
 	public List<ScoreEntity> getScores() {
 		return scores;
@@ -48,5 +48,13 @@ public class StudentEntity extends UserEntity {
 
 	public void setCourses(List<CourseEntity> courses) {
 		this.courses = courses;
+	}
+
+	public AcademicGroupEntity getAcademicGroup() {
+		return academicGroup;
+	}
+
+	public void setAcademicGroup(AcademicGroupEntity academicGroup) {
+		this.academicGroup = academicGroup;
 	}
 }

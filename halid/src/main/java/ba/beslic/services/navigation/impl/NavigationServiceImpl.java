@@ -56,4 +56,10 @@ public class NavigationServiceImpl implements NavigationService
 	public void save(IdentifiableEntity entity) {
 		navigationDao.create(entity);
 	}
+
+	@Override
+	public SidebarEntity createSidebar(SidebarEntity sidebarEntity) {
+		navigationDao.create(sidebarEntity);
+		return sidebarEntity;
+	}
 }

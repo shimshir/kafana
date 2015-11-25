@@ -1,6 +1,7 @@
 package ba.beslic.facades.user;
 
 import ba.beslic.models.presentation.academic.student.StudentData;
+import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.CredentialsData;
 import ba.beslic.models.presentation.user.UserSessionData;
 
@@ -19,4 +20,6 @@ public interface UserFacade {
 	UserSessionData createSession(CredentialsData credentials);
 
 	UserSessionData getUserSessionByUUID(String uuid);
+
+	AccountData getAccountById(Integer id);
 }

@@ -1,6 +1,6 @@
 package ba.beslic.models.presentation.academic.student;
 
-import ba.beslic.models.presentation.academic.CourseData;
+import ba.beslic.models.presentation.academic.AcademicGroupData;
 import ba.beslic.models.presentation.user.UserData;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,9 +15,10 @@ import java.util.List;
 public class StudentData extends UserData {
 
 	private String cardCode;
-	private List<ScoreData> scores;
-	private List<CourseData> courses;
+	private List<Integer> scoreIds;
 	private List<Integer> courseIds;
+	private AcademicGroupData academicGroup;
+	private Integer academicGroupId;
 
 	public String getCardCode() {
 		return cardCode;
@@ -27,22 +28,12 @@ public class StudentData extends UserData {
 		this.cardCode = cardCode;
 	}
 
-	public List<ScoreData> getScores() {
-		return scores;
+	public List<Integer> getScoreIds() {
+		return scoreIds;
 	}
 
-	public void setScores(List<ScoreData> scores) {
-		this.scores = scores;
-	}
-
-	@JsonIgnore
-	public List<CourseData> getCourses() {
-		return courses;
-	}
-
-	@JsonProperty
-	public void setCourses(List<CourseData> courses) {
-		this.courses = courses;
+	public void setScoreIds(List<Integer> scoreIds) {
+		this.scoreIds = scoreIds;
 	}
 
 	public List<Integer> getCourseIds() {
@@ -51,5 +42,23 @@ public class StudentData extends UserData {
 
 	public void setCourseIds(List<Integer> courseIds) {
 		this.courseIds = courseIds;
+	}
+
+	@JsonIgnore
+	public AcademicGroupData getAcademicGroup() {
+		return academicGroup;
+	}
+
+	@JsonProperty
+	public void setAcademicGroup(AcademicGroupData academicGroup) {
+		this.academicGroup = academicGroup;
+	}
+
+	public Integer getAcademicGroupId() {
+		return academicGroupId;
+	}
+
+	public void setAcademicGroupId(Integer academicGroupId) {
+		this.academicGroupId = academicGroupId;
 	}
 }

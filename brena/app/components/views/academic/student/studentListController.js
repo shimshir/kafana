@@ -1,5 +1,10 @@
 app.controller('studentListController', ['$scope', 'Api',
 	function ($scope, Api) {
-		$scope.students = Api.Student.query();
+		Api.Student.query(function (data) {
+			$scope.students = data;
+			for (var i = 0; i < $scope.students.length; i++) {
+				$scope.students[i].account = Api.Account.get({id: $scope.students[i].accountId});
+			}
+		});
 	}
 ]);

@@ -1,5 +1,6 @@
 package ba.beslic.controllers.login;
 
+import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.CredentialsData;
 import ba.beslic.models.presentation.user.UserSessionData;
 import ba.beslic.facades.user.UserFacade;
@@ -34,5 +35,12 @@ public class UserController {
 	{
 		UserSessionData userSessionData = userFacade.getUserSessionByUUID(uuid);
 		return ResponseEntity.ok(userSessionData);
+	}
+
+	@RequestMapping(path = "/account/{id}")
+	public ResponseEntity<AccountData> getAccountById(@PathVariable Integer id)
+	{
+		AccountData accountData = userFacade.getAccountById(id);
+		return ResponseEntity.ok(accountData);
 	}
 }

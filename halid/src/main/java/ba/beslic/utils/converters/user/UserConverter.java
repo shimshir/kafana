@@ -4,6 +4,7 @@ import ba.beslic.models.persistence.user.AccountEntity;
 import ba.beslic.models.persistence.user.UserEntity;
 import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.UserData;
+import ba.beslic.services.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class UserConverter<UE extends UserEntity, UD extends UserData> extends PersonConverter<UE, UD> {
 	@Autowired
 	private AccountConverter accountConverter;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public UD convertToData(UE entity, UD data) {
@@ -26,6 +29,7 @@ public class UserConverter<UE extends UserEntity, UD extends UserData> extends P
 			AccountData accountData = new AccountData();
 			accountData.setUser(data);
 			data.setAccount(accountConverter.convertToData(entity.getAccount(), accountData));
+			data.setAccountId(entity.getAccount().getId());
 		}
 		return data;
 	}
@@ -35,10 +39,14 @@ public class UserConverter<UE extends UserEntity, UD extends UserData> extends P
 		if (data == null)
 			return null;
 		super.convertToEntity(data, entity);
-		if (data.getAccount() != null && entity.getAccount() == null) {
+		if (data.getAccount() != null && data.getAccountId() == null && entity.getAccount() == null) {
 			AccountEntity accountEntity = new AccountEntity();
 			accountEntity.setUser(entity);
 			entity.setAccount(accountConverter.convertToEntity(data.getAccount(), accountEntity));
+		} else if (data.getAccount() == null && data.getAccountId() != null) {
+			entity.setAccount(userService.getAccountById(data.getAccountId()));
+		} else if (data.getAccount() != null && data.getAccountId() != null) {
+			throw new UnsupportedOperationException("Ambigous account!");
 		}
 		return entity;
 	}

@@ -3,9 +3,7 @@ package ba.beslic.controllers.navigation;
 import ba.beslic.models.presentation.navigation.sidebar.SidebarData;
 import ba.beslic.facades.navigation.NavigationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -13,18 +11,23 @@ import org.springframework.web.bind.annotation.RestController;
  * Date:   12.09.2015
  */
 @RestController
-@RequestMapping("/sidebar")
-public class SidebarController {
+@RequestMapping("/navigation")
+public class NavigationController {
 	@Autowired
 	private NavigationFacade navigationFacade;
 
-	@RequestMapping
+	@RequestMapping(path = "/sidebar")
 	public SidebarData getNoSidebar() {
 		return null;
 	}
 
-	@RequestMapping(path = "/{encodedPath}")
+	@RequestMapping(path = "/sidebar/{encodedPath}")
 	public SidebarData getSidebarByPath(@PathVariable String encodedPath) {
 		return navigationFacade.getSidebarByEncPath(encodedPath);
+	}
+
+	@RequestMapping(path = "/sidebar", method = RequestMethod.POST)
+	public SidebarData createSidebar(@RequestBody SidebarData sidebarData) {
+		return navigationFacade.createSidebar(sidebarData);
 	}
 }

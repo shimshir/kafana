@@ -1,6 +1,5 @@
 package ba.beslic.models.presentation.academic.teacher;
 
-import ba.beslic.models.presentation.academic.CourseData;
 import ba.beslic.models.presentation.user.UserData;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
  */
 public class TeacherData extends UserData {
 	private String title;
-	private List<CourseData> courses;
+	private List<Integer> courseIds;
 
 	public String getTitle() {
 		return title;
@@ -22,11 +21,11 @@ public class TeacherData extends UserData {
 		this.title = title;
 	}
 
-	public List<CourseData> getCourses() {
-		return courses;
+	public List<Integer> getCourseIds() {
+		return courseIds;
 	}
 
-	public void setCourses(List<CourseData> courses) {
-		this.courses = courses;
+	public void setCourseIds(List<Integer> courseIds) {
+		this.courseIds = courseIds;
 	}
 }

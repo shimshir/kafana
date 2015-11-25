@@ -1,12 +1,16 @@
 package ba.beslic.utils.converters.academic.student;
 
+import ba.beslic.models.persistence.IdentifiableEntity;
+import ba.beslic.models.persistence.academic.AcademicGroupEntity;
 import ba.beslic.models.persistence.academic.CourseEntity;
 import ba.beslic.models.persistence.academic.ScoreEntity;
 import ba.beslic.models.persistence.academic.student.StudentEntity;
 import ba.beslic.models.presentation.IdentifiableData;
+import ba.beslic.models.presentation.academic.AcademicGroupData;
 import ba.beslic.models.presentation.academic.CourseData;
 import ba.beslic.models.presentation.academic.student.ScoreData;
 import ba.beslic.models.presentation.academic.student.StudentData;
+import ba.beslic.utils.converters.academic.AcademicGroupConverter;
 import ba.beslic.utils.converters.academic.CourseConverter;
 import ba.beslic.utils.converters.user.UserConverter;
 import ba.beslic.services.academic.AcademicService;
@@ -15,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +36,8 @@ public class StudentConverter extends UserConverter<StudentEntity, StudentData> 
 	@Autowired
 	private CourseConverter courseConverter;
 	@Autowired
+	private AcademicGroupConverter academicGroupConverter;
+	@Autowired
 	private AcademicService academicService;
 
 	@Override
@@ -38,28 +45,23 @@ public class StudentConverter extends UserConverter<StudentEntity, StudentData> 
 		if (entity == null)
 			return null;
 		super.convertToData(entity, data);
+		// cardCode
 		data.setCardCode(entity.getCardCode());
+		// scoreIds
 		if (CollectionUtils.isNotEmpty(entity.getScores())) {
-			List<ScoreData> scores = entity.getScores().stream().map
-					(scoreData -> scoreConverter.convertToData(scoreData, new ScoreData())).collect(Collectors.toList());
-			data.setScores(scores);
-		} else {
-			data.setScores(entity.getScores() == null ? null : new ArrayList<>());
+			data.setScoreIds(entity.getScores().stream().map(IdentifiableEntity::getId).collect(Collectors.toList()));
 		}
-
-		// courses
-		if (CollectionUtils.isNotEmpty(entity.getCourses()) && CollectionUtils.isEmpty(data.getCourses())) {
-			data.setCourses(entity.getCourses().stream().map(courseEntity ->
-					{
-						CourseData courseData = new CourseData();
-						courseData.setStudents(Collections.singletonList(data));
-						courseConverter.convertToData(courseEntity, courseData);
-						return courseData;
-					}
-			).collect(Collectors.toList()));
+		// courseIds
+		if (CollectionUtils.isNotEmpty(entity.getCourses())) {
+			data.setCourseIds(entity.getCourses().stream().map(IdentifiableEntity::getId).collect(Collectors.toList()));
 		}
-		if (CollectionUtils.isNotEmpty(data.getCourses()))
-			data.setCourseIds(data.getCourses().stream().map(IdentifiableData::getId).collect(Collectors.toList()));
+		// academicGroup
+		if (entity.getAcademicGroup() != null) {
+			// object
+			data.setAcademicGroup(academicGroupConverter.convertToData(entity.getAcademicGroup(), new AcademicGroupData()));
+			// id
+			data.setAcademicGroupId(entity.getAcademicGroup().getId());
+		}
 		return data;
 	}
 
@@ -68,36 +70,24 @@ public class StudentConverter extends UserConverter<StudentEntity, StudentData> 
 		if (data == null)
 			return null;
 		super.convertToEntity(data, entity);
+		// cardCode
 		entity.setCardCode(data.getCardCode());
-		if (CollectionUtils.isNotEmpty(data.getScores())) {
-			List<ScoreEntity> scores = data.getScores().stream().map
-					(scoreData -> scoreConverter.convertToEntity(scoreData, new ScoreEntity())).collect(Collectors.toList());
-			entity.setScores(scores);
-		} else {
-			entity.setScores(data.getScores() == null ? null : new ArrayList<>());
+		// scores
+		if (CollectionUtils.isNotEmpty(data.getScoreIds())) {
+			entity.setScores(data.getScoreIds().stream().map(id -> academicService.getScoreById(id)).collect(Collectors.toList()));
 		}
-
 		// courses
-		if (CollectionUtils.isNotEmpty(data.getCourses())) {
-			entity.setCourses(data.getCourses().stream().map((courseData) ->
-					courseConverter.convertToEntity(courseData, new CourseEntity())
-			).collect(Collectors.toList()));
-			entity.getCourses().forEach(courseEntity ->
-					{
-						if (CollectionUtils.isEmpty(courseEntity.getStudents()))
-							courseEntity.setStudents(Collections.singletonList(entity));
-						else
-							courseEntity.getStudents().add(entity);
-					}
-			);
-		}
 		if (CollectionUtils.isNotEmpty(data.getCourseIds())) {
-			if (entity.getCourses() == null) {
-				entity.setCourses(new ArrayList<>());
-			}
-			data.getCourseIds().forEach(courseId -> entity.getCourses().add(academicService.getCourseById(courseId)));
+			entity.setScores(data.getScoreIds().stream().map(id -> academicService.getScoreById(id)).collect(Collectors.toList()));
 		}
-
+		// academicGroup
+		if (data.getAcademicGroup() != null && data.getAcademicGroupId() == null) {
+			entity.setAcademicGroup(academicGroupConverter.convertToEntity(data.getAcademicGroup(), new AcademicGroupEntity()));
+		} else if (data.getAcademicGroup() == null && data.getAcademicGroupId() != null) {
+			entity.setAcademicGroup(academicService.getAcademicGroupById(data.getAcademicGroupId()));
+		} else if (data.getAcademicGroup() != null && data.getAcademicGroupId() != null) {
+			throw new UnsupportedOperationException("Ambiguous academicGroup!");
+		}
 		return entity;
 	}
 }

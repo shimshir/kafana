@@ -39,6 +39,14 @@ public class NavigationFacadeImpl implements NavigationFacade {
 		return sidebarData;
 	}
 
+	@Override
+	public SidebarData createSidebar(SidebarData sidebarData) {
+		SidebarEntity sidebarEntity = new SidebarEntity();
+		sidebarConverter.convertToEntity(sidebarData, sidebarEntity);
+		navigationService.createSidebar(sidebarEntity);
+		return sidebarConverter.convertToData(sidebarEntity, new SidebarData());
+	}
+
 	private void resolveItemIdsInLinkPaths(SidebarData sidebarData, String decodedPath) {
 		if (decodedPath.startsWith("/academic/course/"))
 			SidebarLinksPathResolver.resolve(sidebarData, decodedPath, "course");

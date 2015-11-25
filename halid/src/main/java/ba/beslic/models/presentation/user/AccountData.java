@@ -17,6 +17,7 @@ public class AccountData extends IdentifiableData {
 	private String password;
 	private Collection<RoleEnum> roles;
 	private UserData user;
+	private Integer userId;
 
 	public Collection<RoleEnum> getRoles() {
 		return roles;
@@ -56,6 +57,10 @@ public class AccountData extends IdentifiableData {
 	}
 
 	public Integer getUserId() {
-		return user != null ? user.getId() : null;
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 }

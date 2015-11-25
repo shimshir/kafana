@@ -4,6 +4,7 @@ import ba.beslic.models.persistence.user.AccountEntity;
 import ba.beslic.models.persistence.user.UserEntity;
 import ba.beslic.models.presentation.user.AccountData;
 import ba.beslic.models.presentation.user.UserData;
+import ba.beslic.services.user.UserService;
 import ba.beslic.utils.converters.IdentifiableConverter;
 import ba.beslic.utils.security.PasswordEncoderWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class AccountConverter extends IdentifiableConverter<AccountEntity, Accou
 	private PasswordEncoderWrapper passwordEncoder;
 	@Autowired
 	private UserConverter<UserEntity, UserData> userConverter;
+	@Autowired
+	private UserService userService;
 
 	@Override
 	public AccountData convertToData(AccountEntity entity, AccountData data) {
@@ -37,6 +40,7 @@ public class AccountConverter extends IdentifiableConverter<AccountEntity, Accou
 			UserData userData = new UserData();
 			userData.setAccount(data);
 			data.setUser(userConverter.convertToData(entity.getUser(), userData));
+			data.setUserId(entity.getUser().getId());
 		}
 		return data;
 	}
@@ -49,10 +53,14 @@ public class AccountConverter extends IdentifiableConverter<AccountEntity, Accou
 		entity.setUsername(data.getUsername());
 		entity.setHashedPassword(passwordEncoder.encode(data.getUsername(), data.getPassword()));
 		entity.setRoles(data.getRoles());
-		if (data.getUser() != null && entity.getUser() == null) {
+		if (data.getUser() != null && data.getUserId() == null && entity.getUser() == null) {
 			UserEntity userEntity = new UserEntity();
 			userEntity.setAccount(entity);
 			entity.setUser(userConverter.convertToEntity(data.getUser(), userEntity));
+		} else if (data.getUser() == null && data.getUserId() != null) {
+			entity.setUser(userService.getUserById(data.getUserId()));
+		} else if (data.getUser() != null && data.getUserId() != null) {
+			throw new UnsupportedOperationException("Ambigous user!");
 		}
 		return entity;
 	}

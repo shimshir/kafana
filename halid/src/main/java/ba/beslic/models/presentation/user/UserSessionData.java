@@ -9,6 +9,7 @@ import ba.beslic.models.presentation.IdentifiableData;
  */
 public class UserSessionData extends IdentifiableData {
 	private UserData user;
+	private AccountData account;
 	private String uuid;
 	private boolean active;
 
@@ -18,6 +19,14 @@ public class UserSessionData extends IdentifiableData {
 
 	public void setUser(UserData user) {
 		this.user = user;
+	}
+
+	public AccountData getAccount() {
+		return account;
+	}
+
+	public void setAccount(AccountData account) {
+		this.account = account;
 	}
 
 	public String getUuid() {

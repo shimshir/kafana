@@ -1,7 +1,9 @@
 package ba.beslic.services.academic.impl;
 
 import ba.beslic.daos.academic.AcademicDao;
+import ba.beslic.models.persistence.academic.AcademicGroupEntity;
 import ba.beslic.models.persistence.academic.CourseEntity;
+import ba.beslic.models.persistence.academic.ScoreEntity;
 import ba.beslic.services.academic.AcademicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,5 +27,15 @@ public class AcademicServiceImpl implements AcademicService {
 	@Override
 	public CourseEntity getCourseById(Integer id) {
 		return academicDao.getById(CourseEntity.class, id);
+	}
+
+	@Override
+	public AcademicGroupEntity getAcademicGroupById(Integer id) {
+		return academicDao.getById(AcademicGroupEntity.class, id);
+	}
+
+	@Override
+	public ScoreEntity getScoreById(Integer id) {
+		return academicDao.getById(ScoreEntity.class, id);
 	}
 }

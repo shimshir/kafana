@@ -1,7 +1,8 @@
 app.factory('Api', function ($resource, APP_CONSTANTS) {
 		return {
 			Student: $resource(APP_CONSTANTS.apiEndpoint + '/student/:id'),
-			Sidebar: $resource(APP_CONSTANTS.apiEndpoint + '/sidebar/:path')
+			Sidebar: $resource(APP_CONSTANTS.apiEndpoint + '/navigation/sidebar/:path'),
+			Account: $resource(APP_CONSTANTS.apiEndpoint + '/user/account/:id')
 		};
 	}
 ).factory('AuthService', function ($http, Session, APP_CONSTANTS) {
@@ -11,7 +12,7 @@ app.factory('Api', function ($resource, APP_CONSTANTS) {
 		return $http.post(APP_CONSTANTS.apiEndpoint + '/user/login', credentials)
 					.then(function (res) {
 						var userSession = res.data;
-						Session.create(userSession.id, userSession.user.id, userSession.user.account.roles);
+						Session.create(userSession.id, userSession.user.id, userSession.account.roles);
 						return userSession.user;
 					});
 				};

@@ -1,6 +1,7 @@
 package ba.beslic.services.user.impl;
 
 import ba.beslic.daos.user.UserDao;
+import ba.beslic.models.persistence.academic.teacher.TeacherEntity;
 import ba.beslic.models.persistence.user.AccountEntity;
 import ba.beslic.models.persistence.user.UUIDTokenEntity;
 import ba.beslic.models.persistence.user.UserEntity;
@@ -74,5 +75,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<StudentEntity> getAllStudents() {
 		return userDao.find(StudentEntity.class, new HashMap<>());
+	}
+
+	@Override
+	public TeacherEntity getTeacherById(Integer id) {
+		return userDao.getById(TeacherEntity.class, id);
+	}
+
+	@Override
+	public AccountEntity getAccountById(Integer id) {
+		return userDao.getById(AccountEntity.class, id);
 	}
 }

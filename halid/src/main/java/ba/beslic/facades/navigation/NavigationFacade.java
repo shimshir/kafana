@@ -11,4 +11,6 @@ import ba.beslic.models.presentation.navigation.sidebar.SidebarData;
 public interface NavigationFacade
 {
 	SidebarData getSidebarByEncPath(String encodedPath);
+
+	SidebarData createSidebar(SidebarData sidebarData);
 }
